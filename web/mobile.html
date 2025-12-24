@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Old iPhone UI Frame</title>
+<style>
+    body {
+        margin: 0;
+        height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background: linear-gradient(135deg, #a3d5ff, #f8cdda);
+        font-family: Arial, sans-serif;
+    }
+
+    /* 아이폰 외곽 */
+    .iphone {
+        width: 380px;
+        height: 720px;
+        background: #111;
+        border-radius: 50px;
+        padding: 20px;
+        box-shadow: 0 0 20px rgba(0,0,0,0.6);
+        position: relative;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    /* 화면 영역 */
+    .screen {
+        width: 100%;
+        height: 100%;
+        background: white;
+        border-radius: 30px;
+        overflow: hidden;
+        display: flex;
+        flex-direction: column;
+    }
+
+    iframe {
+        flex: 1;
+        border: none;
+        width: 100%;
+        height: 100%;
+    }
+
+    /* 상단 스피커 + 센서 (구형 아이폰 느낌) */
+    .top-bar {
+        position: absolute;
+        top: 12px;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 60px;
+        height: 8px;
+        background: #222;
+        border-radius: 5px;
+    }
+
+    /* 홈버튼 */
+    .home-btn {
+        position: absolute;
+        bottom: 10px;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 65px;
+        height: 65px;
+        background: #111;
+        border-radius: 50%;
+        border: 3px solid #555;
+        box-shadow: inset 0 0 5px rgba(255,255,255,0.3);
+    }
+</style>
+</head>
+<body>
+
+<div class="iphone">
+    <div class="top-bar"></div>
+    <div class="screen">
+        <iframe src="/note/25-07-06.html"></iframe>
+    </div>
+    <div class="home-btn"></div>
+</div>
+
+</body>
+</html>
