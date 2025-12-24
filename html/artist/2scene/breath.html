@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Bluebell</title>
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      padding: 0;
+      background: white;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      font-family: 'Noto Sans KR', sans-serif;
+    }
+
+    .polaroid-container {
+      width: 90%;
+      max-width: 80%;
+      background: #a66fc936;
+      border-radius: 20px;
+      padding: 10px;
+      box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
+      display: flex;
+      flex-direction: column;
+      gap: 1.5vw;
+      position: relative;
+      z-index: 1;
+    }
+
+    .top,
+    .bottom {
+      display: grid;
+      grid-template-columns: 20% 80%;
+      gap: 1vw;
+    }
+
+    .vertical-text {
+      writing-mode: vertical-rl;
+      text-orientation: mixed;
+      font-size: 1.2rem;
+      color: #444;
+      font-weight: bold;
+      padding-top: 1rem;
+      position: relative;
+      top: 0;
+      left: -10px;
+    }
+
+    .image-area {
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+    }
+
+    .image-area img {
+      width: 220px;
+      height: 300px;
+      object-fit: cover;
+      border: 1px solid #ddd;
+    }
+
+    .bottom-text {
+      font-size: 13px;
+      color: #333;
+      line-height: 1.6;
+      padding-top: 12px;
+      text-align: justify;
+            padding-right: 5px;
+
+    }
+
+    .highlight {
+      color: #9b0faa;
+      font-weight: bold;
+    }
+
+    @media (max-width: 500px) {
+      .vertical-text {
+        font-size: 1rem;
+      }
+
+      .bottom-text {
+        font-size: 13px;
+      }
+    }
+
+.lime-container {
+   position: absolute; 
+  width: 100%;
+   overflow: hidden;  
+  min-height: 200vh;   /* 화면 높이보다 크게 */
+  z-index: 0;
+  pointer-events: none;
+}
+    .lime {
+  position: relative ;
+  width: 40px;
+  height: 40px;
+  background-image: url('https://pngimg.com/uploads/bellflower/small/bellflower_PNG10.png'); /* ← 꽃잎 이미지 */
+  background-size: contain;
+  background-repeat: no-repeat;
+  animation: float 3s ease-in-out infinite;
+  opacity: 0.6;
+}
+.conveyg a{
+text-decoration:none; color: #9b0faa72; text-decoration-line: underline; font-weight:bold;
+    }
+    @keyframes float {
+      0% { transform: translateY(0px); }
+      50% { transform: translateY(-15px); }
+      100% { transform: translateY(0px); }
+    }
+  </style>
+</head>
+<body>
+  <div class="lime-container"></div>
+
+  <div class="polaroid-container">
+    <div class="top">
+      <div class="vertical-text">
+        이다래<br>달빛에 빛나는 꽃
+      </div>
+      <div class="image-area">
+        <img src="ldrmain.jpg" alt="Flower Hill">
+      </div>
+    </div>
+    <div class="bottom">
+      <div class="vertical-text" style="color: #9b0faa;">
+        with<br>Bluebell
+      </div>
+      <div class="bottom-text">
+       마치 달빛을 머금은 듯,<br>보랏빛 배경 위에 피어난 꽃들은 고요하게 빛난다. 그 순간을 감싸는 향은,<br>
+        <span class="highlight">Bluebell</span><br>
+        상쾌하면서도 달콤한 보라색 꽃의 향이<br>
+        그림 속 풍경과 조용히 어우러진다.
+        <br> <span class="conveyg" >
+          <a href="https://conveyg.com/all/?idx=185">
+        > 향 더 알아보러 가기</a></span>
+      </div>
+    </div>
+  </div>
+
+        <script src="breath.js"></script>
+
+
+</body>
+</html>

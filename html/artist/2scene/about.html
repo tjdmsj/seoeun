@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>about+Gallery2</title>
+  <style>
+    body {
+      background: white;
+      margin: 0;
+      font-family: sans-serif;
+      overflow-x: hidden;
+      overflow: auto;
+      -ms-overflow-style: none;  /* IE, Edge */
+      scrollbar-width: none;     /* Firefox */
+             padding-bottom: 150px; 
+
+    }
+
+    body::-webkit-scrollbar {
+      display: none;             /* Chrome, Safari */
+    }
+
+    .header {
+      text-align: center;
+      padding: 30px 20px 10px;
+    }
+
+    .header h1 {
+      font-size: 32px;
+      color: #b382c4 ;
+    }
+
+   .header .names {
+      font-size: 14px;
+      color: #444;
+      max-width: 700px;
+      margin: 0 auto 10px;
+      line-height: 1.7;
+      padding: 0 15px 0 15px;
+      text-align: justify;
+    }
+
+    .header .filter {
+      font-size: 13px;
+      margin-top: 30px;
+      color: #555;
+    }
+
+    .side-text {
+      position: fixed;
+      top: 50%;
+      transform: translateY(-50%);
+      writing-mode: vertical-rl;
+      text-orientation: mixed;
+      font-size: 12px;
+      color: #b382c4;
+      opacity: 0.8;
+      z-index: 2;
+    }
+
+    .side-text.left {
+      left: 5px;
+      transform: translateY(-50%) rotate(-180deg);
+    }
+
+    .side-text.right {
+      right: 5px;
+    }
+
+    /* 슬라이드 스타일 */
+    .dots {
+      display: flex;
+      justify-content: center;
+      margin-bottom: 20px;
+      gap: 8px;
+    }
+
+    .dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: #ccc;
+    }
+
+    .dot.active {
+      background: #b382c4;
+    }
+
+    .slider-container {
+      width: 90%;
+      height: 350px;
+      max-height: 100%;
+      overflow: hidden;
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transform: translateX(-50%);
+      left: 50%
+    }
+
+    .slider {
+      position: relative;
+      align-items: center;
+      justify-content: center;
+      width: 100%;
+      height: 100%;
+    }
+
+    .slide {
+      width: 100%;
+      height: 100%;
+      position: absolute;
+      top: 0;
+      left: 0;
+      opacity: 0;
+      transition: opacity 0.5s ease;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .slide.active {
+      opacity: 1;
+      z-index: 2;
+    }
+
+    .slide img {
+      max-height: 80%;
+      max-width: 90%;
+      object-fit: contain;
+      display: block;
+    }
+
+    .caption {
+      margin-top: 10px;
+      font-size: 12px;
+      text-align: center;
+      color: #333;
+      padding: 0 10px;
+    }
+  </style>
+</head>
+<body>
+  <div class="side-text left">← DaRae Lee ←</div>
+  <div class="side-text right">→ A Moment , A Breath →</div>
+
+  <div class="header">
+    <h1>이다래</h1>
+    <div class="names">
+      이다래 작가의 화면은 강렬한 색채 속에서도 고요히 피어나는 생명의 숨결을 품고 있다. 꽃, 나무, 열매 - 일상의 풍경에서 길어올린 이미지들은 작가의 감성과 상상력을 통해 새로운 결로 재구성된다. 서울대공원, 호텔 정원 등 스스로 촬영한 장면들은 작업의 출발점이 된다. 그 위에 겹쳐지는 빛과 색은 현실을 넘어선 감각의 풍경을 만들어낸다. 그림 속 식물들은 단지 대상이 아닌, 감정을 머금은 존재로 다시 태어난다. 이다래 작가에게 그림은 마음의 언어이자 세상과 연결되는 조용한 다리이다. 작품 앞에 선 관람객이 조용히 미소 지을 때, 작가 역시 마음속으로 작은 인사를 건넨다. 그림을 통해 기쁨을 나누고 싶다는 바람처럼, 이다래의 풍경에는 다정한 시선과 따뜻한 숨결이 머물러 있다.
+    </div>
+    <div class="filter"><strong>#일상의풍경 #기쁨을그리는손 #마음속정원</strong></div>
+  </div>
+
+  <!-- 슬라이드 삽입 시작 -->
+  <div class="slider-container">
+    <div class="slider" id="slider">
+      <div class="slide active">
+        <img src="ldrmain.jpg" alt="">
+        <div class="caption">《달빛에 빛나는 꽃》, 2022, Acrylic on canvas, 97x65.2cm
+</div>
+      </div>
+      <div class="slide">
+        <img src="ldr1.jpg" alt="">
+        <div class="caption">《파랑새》, 2022, Acylic on canvas, 27x22cm
+</div>
+      </div>
+      <div class="slide">
+        <img src="ldr2.jpg" alt="">
+        <div class="caption">《봄의 정원》, 2022, Acylic on canvas, 27x22cm
+</div>
+      </div>
+      <div class="slide">
+        <img src="ldr3.jpg" alt="">
+        <div class="caption">《동백꽃 정원》, 2022, Acylic on canvas, 27x22cm
+</div>
+      </div>
+      <div class="slide">
+        <img src="ldr4.jpg" alt="">
+        <div class="caption">《물가에 핀 꽃들》, 2022,acrylic on canvas, 53x41cm
+</div>
+      </div>
+      <div class="slide">
+        <img src="ldr5.jpg" alt="">
+        <div class="caption">《보라빛 정원》, 2022, Acylic on canvas, 27x22cm
+</div>
+      </div>
+      <div class="slide">
+        <img src="ldr6.jpg" alt="">
+        <div class="caption">《자작나무 숲의 오두막》, 2022, acrylic on canvas, 112x162cm
+</div>
+      </div>
+      <div class="slide">
+        <img src="ldr7.jpg" alt="">
+        <div class="caption">《노래하는 새들의 정원》, 2024, Acrylic on canvas, 116.8x91cm 
+</div>
+      </div>
+      <div class="slide">
+        <img src="ldr8.jpg" alt="">
+        <div class="caption">《초록 화분들》, 2025, Acrylic on canvas, 60.6x72.7cm</div>
+      </div>
+    </div>
+  </div>
+    <div class="dots" id="dots"></div>
+
+  <!-- 슬라이드 삽입 끝 -->
+
+      <script src="about.js"></script>
+
+</body>
+</html>

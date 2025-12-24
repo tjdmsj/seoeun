@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta property="og:title" content="한 컷, 한 숨">
+  <meta property="og:type" content="website">
+<meta property="og:image" content="https://d2w9rnfcy7mm78.cloudfront.net/38210967/original_a1f72f8e03d978150ac565ea0bf35812.jpg">
+
+<meta property="og:description" content="한 숨 들이켰을 뿐인데, 풍경이 들어왔다">
+<meta property="og:url" content="https://np-art.site/">
+  <title>메인페이지</title>
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bitcount+Grid+Double:wght@100..900&display=swap" rel="stylesheet">
+
+  <style>
+    html, body {
+      margin: 0;
+      padding: 0;
+      background-color: black;
+      height: 100%;
+      font-family: sans-serif;
+      overflow: hidden;
+    }
+
+    @font-face {
+      font-family: 'Pretendard-Regular';
+      src: url('https://fastly.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-Regular.woff') format('woff');
+      font-weight: 400;
+      font-style: normal;
+    }
+
+    @font-face {
+    font-family: 'HakgyoansimByeolbichhaneulTTF-B';
+    src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/2408-5@1.0/HakgyoansimByeolbichhaneulTTF-B.woff2') format('woff2');
+    font-weight: 700;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'HSBombaram21-Regular';
+    src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_2302@1.0/HSBombaram21-Regular.woff2') format('woff2');
+    font-weight: normal;
+    font-style: normal;
+}
+
+    .wrapper {
+      position: relative;
+      max-width: 430px;
+      margin: 0 auto;
+      height: 100dvh;
+      background-color: white;
+      display: flex;
+      flex-direction: column;
+      /* 그라디언트 배경 */
+  background-image:url('POSTER.png');
+   background-size: cover;       /* 배경 이미지를 요소에 꽉 채움 */
+  background-position: center;  /* 가운데 정렬 */
+  background-repeat: no-repeat; /* 반복 없음 */
+    }
+/* 블러 효과 레이어 (배경만 흐리게!) */
+.wrapper::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: 0; /* 콘텐츠보다 아래 */
+  backdrop-filter: blur(8px);
+  background-color: rgba(255, 255, 255, 0.15);
+  pointer-events: none;
+}
+    /* 콘텐츠는 위로! */
+.wrapper > * {
+  position: relative;
+  z-index: 1;
+}
+
+    .lang-switch {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      z-index: 10;
+    }
+
+    .lang-switch button {
+      background-color: rgba(255, 255, 255, 0.1);
+      border: 1px solid rgb(255, 255, 255);
+      color: rgb(255, 255, 255);
+      padding: 6px 12px;
+      margin-left: 8px;
+      border-radius: 20px;
+      cursor: pointer;
+      font-size: 0.9rem;
+      transition: all 0.3s ease;
+    }
+
+    .lang-switch button:hover {
+      background-color: black;
+      color: white;
+    }
+
+    .lang { display: none; }
+    .lang.active { display: block; }
+
+    .top-half {
+      flex: 1;
+      padding: 60px 48px 0;
+    }
+
+    .head {
+      font-family: 'HakgyoansimByeolbichhaneulTTF-B', system-ui;
+      font-size: 35px;
+      font-weight: 400;
+      color: rgb(255, 255, 255);
+      text-shadow: 0 2px 4px rgba(0, 0, 0, 0.6);
+
+    }
+
+    .subtitle {
+      padding: 10px 0 0;
+      font-family: 'Pretendard-Regular', sans-serif;
+      font-size: 18Px;
+      line-height: 1.8;
+      font-weight:600;
+      white-space: nowrap;         /* 줄바꿈 금지 */
+      font-size: clamp(16px, 3.5vw, 18px); /* 화면 크기에 따라 자동 조절 */
+
+    }
+
+    .bottom-grid {
+      flex: 1;
+      display: grid;
+      grid-template-rows: repeat(4, 1fr);
+    }
+#grid-row-blank:hover{
+    background-color: transparent;
+    cursor: default;
+}
+    .grid-row {
+      width: 100%;
+      border-bottom: 1px solid white;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Pretendard-Regular',sans-serif;
+      font-weight: 600;
+    letter-spacing: 0.1em;
+      font-size: 1.6rem;
+      cursor: pointer;
+      color: white;
+    
+      
+      text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+      transition: background-color 0.3s ease;
+       white-space: nowrap;         /* 줄바꿈 금지 */
+         font-size: clamp(1.4rem, 4vw, 1.6rem); /* 화면 크기에 따라 자동 조절 */
+    }
+
+    .grid-row:hover {
+      background-color: #f5f5f5;
+    }
+
+    @media (max-width: 480px) {
+      .wrapper {
+        width: 100vw;
+      }
+    }
+
+    @font-face {
+    font-family: '1973MimiWorldR';
+    src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_2105_2@1.1/1973MimiWorldR.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+  </style>
+</head>
+<body >
+
+  <div class="wrapper">
+    <div class="lang-switch">
+      <button onclick="switchLanguage('ko')">KOR</button>
+      <button onclick="switchLanguage('en')">ENG</button>
+    </div>
+
+    <div class="top-half">
+      <div class="head">
+        <span class="lang ko active">한<br>컷,<br>한<br>숨</span>
+          <span class="lang en" style="font-size: 32px;">ONE<br>MOMENT,<br>ONE<br>CUT</span>
+      
+          <div class="subtitle">
+          <span class="lang ko active">한 숨 들이켰을 뿐인데 풍경이 들어왔다<br>전시 관람 가이드 웹</span>
+          <span class="lang en">In a single breath,<br>the landscape quietly appeared<br>Exhibition Guide Website</span>
+        </div>
+
+      </div>
+    </div>
+
+    <div class="bottom-grid">
+        <div class="grid-row" id="grid-row-blank"></div>
+<!-- 기존 구조 삭제하고 이걸로 대체 -->
+<div class="grid-row" onclick="goTo('artist/1.html')">
+  <span class="lang ko active" style="text-decoration: none; color: inherit; white-space: pre;">
+◯ 컷, ◯ 숨
+  </span>
+  <span class="lang en" style="text-decoration: none; color: inherit; white-space: pre;">
+◯ Moment, ◯ Breath
+  </span>
+</div>
+
+<div class="grid-row" onclick="window.location.href='workshop/index.html'">
+
+
+  <span class="lang ko active" style="text-decoration: none; color: inherit;">풍경 기록하기</span>
+  <span class="lang en" style="text-decoration: none; color: inherit;">Share Your Scene</span>
+</div>
+
+<div class="grid-row" onclick="goTo('tour/index최종.html')">
+  <span class="lang ko active" style="text-decoration: none; color: inherit;">프로젝트 소개</span>
+  <span class="lang en" style="text-decoration: none; color: inherit;">About the Project</span>
+</div>
+
+    </div>
+  </div>
+
+   <script>
+    function goTo(baseUrl) {
+    const lang = getLangFromURL() || "ko";
+    const url = new URL(baseUrl, window.location.origin);
+    url.searchParams.set("lang", lang);
+    window.location.href = url.toString();
+  }
+
+    function switchLanguage(lang) {
+      document.querySelectorAll('.lang').forEach(el => {
+        el.classList.remove('active');
+        if (el.classList.contains(lang)) el.classList.add('active');
+      });
+      
+       // 버튼 링크에 언어 파라미터 추가
+  const link = document.getElementById("languageLink");
+  if (link) {
+    link.href = `home.html?lang=${lang}`;
+  }
+
+      // 모든 a 태그에 lang 파라미터 붙이기
+      document.querySelectorAll("a").forEach(link => {
+        const url = new URL(link.href, window.location.origin);
+        url.searchParams.set("lang", lang);
+        link.href = url.toString();
+      });
+
+      // 주소창도 업데이트
+      const newURL = new URL(window.location);
+      newURL.searchParams.set("lang", lang);
+      window.history.replaceState({}, '', newURL);
+    }
+
+    function getLangFromURL() {
+      const params = new URLSearchParams(window.location.search);
+      return params.get("lang") || "ko";
+    }
+
+    window.addEventListener("DOMContentLoaded", () => {
+      const lang = getLangFromURL();
+
+      // 언어 반영
+      document.querySelectorAll(".lang").forEach(el => {
+        el.classList.remove("active");
+        if (el.classList.contains(lang)) el.classList.add("active");
+      });
+
+      // 모든 링크에 lang 파라미터 자동 추가
+      document.querySelectorAll("a").forEach(link => {
+        const url = new URL(link.href, window.location.origin);
+        url.searchParams.set("lang", lang);
+        link.href = url.toString();
+      });
+    });
+  </script>
+
+
+</body>
+</html>

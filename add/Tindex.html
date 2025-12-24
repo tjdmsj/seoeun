@@ -1,0 +1,172 @@
+
+   <!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="viewport-fit=cover, width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">  <title>home</title>
+  <style>
+    html, body {
+      margin: 0;
+      padding: 0;
+      background-color: black;
+      height: 100%;
+      font-family: sans-serif;
+      overflow: hidden;
+    }
+
+.lang { display: none; }
+
+.lang.active { display: block; }
+
+    .wrapper {
+        position: relative;
+  max-width: 430px;
+  margin: 0 auto;
+  min-height: 100vh;
+  background-color: #ffffff;
+  background-size: cover;              /* 꽉 채우기 */
+  background-position: center center;  /* 가운데 정렬 */
+  background-repeat: no-repeat;
+}
+
+
+.accordion-container {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  max-width: 430px;
+  margin: 0 auto;
+}
+
+.accordion-item {
+  background-color: #ffffff;
+  overflow: hidden;
+  transition: all 0.3s ease;
+}
+
+
+/* 작가별 border 색상 지정 */
+#artist1 { border-top: 3px solid #F5E9DA; border-radius: 30%;} /* 베이지 */
+#artist2 { border-top: 3px solid #A8D5BA;  border-radius: 30%;} /* 초록 */
+#artist3 { border-top: 3px solid #EF7C7C; border-radius: 30%; } /* 빨강 */
+#artist4 { border-top: 3px solid #CBAACB;  border-radius: 30%;} /* 보라 */
+
+#artist1:hover {
+  background-color: #F5E9DA;
+  color: black;
+}
+
+#artist2:hover {
+  background-color: #A8D5BA;
+  color: black;
+}
+
+#artist3:hover {
+  background-color: #EF7C7C;
+  color: white;
+}
+
+#artist4:hover {
+  background-color: #CBAACB;
+  color: black;
+}
+.accordion-header {
+  padding: 10px;
+  cursor: pointer;
+  height: 50px;
+  font-size: 45px;
+  transition: background-color 0.3s ease;
+  text-align: center;
+ 
+}
+
+
+.accordion-header:hover {
+  background-color: #333;
+  color: #ffffff;
+}
+
+.accordion-content {
+  height: 0;
+  overflow: hidden;
+  transition: height 0.3s ease;
+  background-color: #000;
+}
+
+.accordion-content iframe {
+  width: 100%;
+  height: 300px;
+  border: none;
+  display: block;
+}
+
+  </style>
+</head>
+<body>
+   
+<div class="wrapper">
+<div class="accordion-container">
+
+  <div class="accordion-item" data-src="page1.html">
+    <div class="accordion-header" id="artist1">박혜신</div>
+    <div class="accordion-content">
+      <iframe></iframe>
+    </div>
+  </div>
+
+  <div class="accordion-item" data-src="page2.html">
+    <div class="accordion-header" id="artist2">강선아</div>
+    <div class="accordion-content">
+      <iframe></iframe>
+    </div>
+  </div>
+
+  <div class="accordion-item" data-src="page3.html">
+    <div class="accordion-header" id="artist3">박찬흠</div>
+    <div class="accordion-content">
+      <iframe></iframe>
+    </div>
+  </div>
+
+  <div class="accordion-item" data-src="page4.html">
+    <div class="accordion-header" id="artist4">이다래</div>
+    <div class="accordion-content">
+      <iframe></iframe>
+    </div>
+  </div>
+
+</div>
+</div>
+
+<script>
+    const items = document.querySelectorAll('.accordion-item');
+
+items.forEach(item => {
+  const header = item.querySelector('.accordion-header');
+  const content = item.querySelector('.accordion-content');
+  const iframe = item.querySelector('iframe');
+
+  header.addEventListener('click', () => {
+    const isOpen = item.classList.contains('active');
+
+    // 모든 항목 닫기
+    items.forEach(i => {
+      i.classList.remove('active');
+      i.querySelector('.accordion-content').style.height = '0px';
+    });
+
+    // 열려 있지 않다면 열기
+    if (!isOpen) {
+      item.classList.add('active');
+      content.style.height = '400px';
+      const src = item.getAttribute('data-src');
+      iframe.setAttribute('src', src);
+    } else {
+      iframe.removeAttribute('src'); // 열려있던 거 닫으면 src 제거
+    }
+  });
+});
+
+</script>
+</body>
+</html>

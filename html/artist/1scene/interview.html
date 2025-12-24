@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>interview1</title>
+    <style>
+        @font-face {
+      font-family: 'Pretendard-Regular';
+      src: url('https://fastly.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-Regular.woff') format('woff');
+      font-weight: 400;
+      font-style: normal;
+    }
+
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Pretendard-Regular', sans-serif;
+    line-height: 28px;
+    background: white;
+    font-family: 'Pretendard', sans-serif;
+}
+
+.header {
+  position: sticky;
+  top: 0; 
+  background-color: rgb(255, 255, 255); 
+  border-bottom: 2px dashed #e8e8e8;
+  z-index: 10;
+  border-bottom-right-radius: 30%;
+border-bottom-left-radius: 30%;
+
+
+}
+
+.notice {
+  padding: 10px 15px 8px 30px; 
+  margin-top: 0; 
+  margin-bottom: 0;
+  text-align: right;
+  font-size: 14px;
+  font-size: clamp(12px, 3vw, 14px); 
+  line-height: 20px;
+}
+
+.divider {
+  border: none;
+  height: 1px;
+  background-color: transparent;
+  width: 100%;
+  margin: 0; /* 줄 간격 줄이기 */
+}
+
+
+.interview-container {
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 20px 20px;
+}
+
+.bubble {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: all 0.8s ease;
+  max-width: 80%;
+  padding: 14px 17px;
+  border-radius: 15px;
+  margin: 20px 0;
+  position: relative;
+}
+
+.bubble.show {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.question {
+background: linear-gradient(180deg, #f0f0f0, #ffffff);  
+align-self: flex-end;
+margin-left: auto;
+          border-bottom-right-radius: 0;
+      border: 1px solid #cfcfcf;
+      box-shadow: inset 0 2px 3px rgba(0, 0, 0, 0.25), inset 0 -2px 3px rgba(0, 0, 0, 0.25);
+text-align: justify;
+}
+/*FDEDEC*/
+
+.answer {
+ background: linear-gradient(0deg, #A8D5BA,#bfe2cd, #ddf2e5, #eaf8ef, #fcfffd);  
+ align-self: flex-start;
+  margin-right: auto;
+        border-bottom-left-radius: 0;
+      border: 1px solid #ddd;
+      box-shadow: inset 0 2px 3px rgba(0, 0, 0, 0.25), inset 0 -2px 3px rgba(0, 0, 0, 0.25);
+text-align: justify;
+}
+
+
+/*배경없는
+.question {
+align-self: flex-end;
+margin-left: auto;
+          border-bottom-right-radius: 0;
+      border: 2px solid #e2dcdc;
+
+}
+
+.answer {
+  align-self: flex-start;
+  margin-right: auto;
+        border-bottom-left-radius: 0;
+      border: 2px solid rgb(255, 119, 119);
+}
+      */
+      
+    </style>
+</head>
+<body>
+  <header class="header">
+    <hr class="divider"> 
+  <p class="notice">
+    ※ 본 인터뷰는 [작가님께서 답변] 하신 내용과<br>어머님께서 대신 답변해주신 내용을 포함하고 있습니다.
+  </p>
+  </header>
+
+    <div class="interview-container">
+  <div class="bubble question">Q. 작가님께서 유아기 때부터 캐릭터를 그리며 그림을 시작하셨다고 들었어요. 그때의 그림 그리기는 작가님에게 어떤 의미였을까요?</div>
+  <div class="bubble answer">A. 처음엔 캐릭터를 그리는 게 선아한테 놀이였어요. 유아기 때 봤던 애니메이션이나 동화책 속 장면을 마치 복사하듯 그리곤 했어요. 창작보다는 카피에 가까웠지만, 그 안에서 선아만의 이야기를 만들기 시작했죠. 특히 선아가 말로는 표현을 안하니까 우리가 선아가 어떤 캐릭터들을 알고 있는지조차 몰랐는데, 그림을 통해 그런 것들이 드러났어요.</div>
+
+  <div class="bubble question">Q. 작품에서 특히 연두색이 자주 등장하는 게 인상적이었어요. 작가님에게 연두색은 어떤 의미인가요?</div>
+  <div class="bubble answer">A. 선아가 계이름 중에 ‘파’를 좋아해요. 그래서인지 먹는 파(대파)도 좋아하고요. 그 파가 연두색이잖아요. 저는 선아가 연두색이 좋아서 파를 좋아하게 된 건지, 파가 연두색이라 연두색을 좋아하게 된 건지는 잘 모르겠어요. 나중에는 목걸이도 꼭 연두색으로 골랐고, 완두콩이나 청포도, 청사과처럼 연두색인 것들을 좋아해서 그림에도 자연스럽게 연두색이 많이 들어가게 됐어요. 그래서 ‘I LOVE 연두 녹색’이라는 그림도 나오게 됐죠. 선아는 연두색을 좋아하는 대상들과 자연스럽게 연관 짓는 것 같아요. 또 그렇게 확장되면서 회화적인 그림이 팝아트적인 느낌으로도 발전한 것 같아요.</div>
+
+   <div class="bubble question">Q. 작가님의 작업에는 풍경이 자주 등장하는데요, 자연을 그리게 된 데에는 어떤 계기나 과정이 있었을까요?</div>
+  <div class="bubble answer">A. 선아가 졸업 후 처음엔 커피 회사에 취직했었어요. 그런데 디스에이블드 대표님을 만나면서 발달장애 예술가로 고용돼, 재택근무를 하며 단조로운 생활이 시작됐죠. 그래서 저는 선아가 밖의 자극을 더 경험할 수 있도록 일부러 외출을 자주 했어요. 그림 소재나 주제를 찾기 위해서 일단 무조건 밖으로 나갔죠.<br>어릴 적에도 비슷했어요. 어린이집을 다닐 때도 일부러 집에서 멀리 떨어진 시골 환경에 있는 곳으로 보냈는데, 그때 가는 길목에서 보았던 나팔꽃, 망초꽃 같은 것들이 지금 그림의 주요 소재로 자주 등장하곤 해요. 그 시절엔 선아와 소통이 어려워서 단어, 색깔, 숫자 같은 걸로 서로 소통을 시도했는데, 그 과정 자체가 선아에게 언어치료이자 추억이 되었어요. 그런 기억들이 지금 그림으로 이어지고 있는 것 같아요.<br>요즘도 저는 건강이 최우선이라 생각해서 선아와 함께 운동 겸 산책으로  등산도 다니는데, 그렇게 체력도 기르고, 동시에 자연을 관찰하며 소재를 얻기도 해요. 그래서인지 초기엔 캐릭터 중심이었던 그림들이 점점 관찰 중심의 풍경으로 바뀌어가고 있어요. 선아가 자연 다큐멘터리를 즐겨 보는 것도 영향을 준 것 같고요.</div>
+
+
+
+  <div class="bubble question">
+   Q. 이번에 함께 할 전시에서는 향기와 풍경을 연결한 기획을 선보이려고 합니다. 작가님이 평소 좋아하시는 향기가 있나요?</div>
+  <div class="bubble answer">A. [작가님 답변] 연두빛 사과향을 좋아해요.</div>
+
+  <div class="bubble question">
+   Q. 작가님의 작품에서 향기가 난다면 어떤 향기가 날 것 같나요?</div>
+  <div class="bubble answer">A. [작가님 답변] 망초꽃 향기. 좋은 향이 날 것 같아요.</div>
+
+   <div class="bubble question">Q. 작가님이 전시장에서 본인의 작품을 직접 마주할 때 어떤 기분이 드시나요?</div>
+  <div class="bubble answer">A. 전시장에 가서 본인이 직접 그린 그림임에도 “이렇게 좋은가 싶을 정도로” 유심히 바라보곤 해요. 그런 모습을 볼 때면 참 기특하기도 하고 뿌듯한 마음이 듭니다.</div>
+
+  <div class="bubble question">Q. 그림을 그리면서 가장 하고 싶은 일이 무엇인가요?</div>
+  <div class="bubble answer">A. [작가님 답변] 멋지게 그려서 전시에서 선물해주고 싶어요. 그리고 그림을 많이 사갔으면 좋겠어요! 행복하고 긍정적인 감정을 나누고 싶어요.</div> 
+
+  <div class="bubble question">Q. 앞으로 작가님의 작품 활동이나 작업 방향에 대해 어떻게 생각하고 계신가요?</div>
+  <div class="bubble answer">A. 예술적인 성취보다는 그림을 통해 꾸준히 발전하고 성장하는 데 더 큰 의미를 두고 싶어요. 선아가 좋아하는 것들을 그리고, 자신의 이야기를 그림으로 표현하는 데 집중하며 작업을 이어가길 바랍니다. 욕심을 버리고 감사한 마음으로, 마치 일기 쓰듯 꾸준히 붓을 놓지 않고 그림을 그리자는 마음이에요. 선아가 자신의 이야기를 작품에 담아가는 작업을 계속 이어갔으면 좋겠습니다.</div>
+  
+ <div class="bubble question">Q. 작가님의 꿈은 무엇인가요?</div>
+  <div class="bubble answer">A. [작가님 답변] 율현주택으로 이사가는 게 꿈이에요. 대문이 있는 넓은 집으로 이사가서 만들기도 하고 2층에 제 방을 가지고 싶어요. </div>
+  <script src="interview.js"></script>
+
+</body>
+</html>

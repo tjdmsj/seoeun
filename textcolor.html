@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>특정 단어만 색 변경</title>
+<style>
+  body {
+    background: white;
+    font-family: 'Noto Sans KR', sans-serif;
+    padding: 50vh 20px; /* 충분한 스크롤 공간 */
+  }
+  .text {
+    max-width: 700px;
+    font-size: 1.3rem;
+    line-height: 1.6;
+    color: #555;
+  }
+  .highlight {
+    transition: color 0.4s ease;
+    color: #bbb;
+  }
+  .highlight.active {
+    color: red;
+    font-weight: bold;
+  }
+</style>
+</head>
+<body>
+
+<div class="text" id="text">
+  우리는 <span class="highlight">기술</span> 혁신과 <span class="highlight">환경</span> 문제를 함께 고민해야 합니다.  
+  특히 <span class="highlight">기후 변화</span>와 자원 고갈은 우리 모두의 <span class="highlight">책임</span>입니다.
+</div>
+
+<script>
+ 
+  const highlights = document.querySelectorAll('.highlight');
+
+  window.addEventListener('scroll', () => {
+    const scrollTop = window.scrollY;
+
+    // 더 빠르게 반응하게 하려면 maxScroll 값을 작게 설정
+    const maxScroll = window.innerHeight * 0.5; // 스크롤 0~50% 높이 구간에서 작동
+
+    let progress = scrollTop / maxScroll;
+    progress = Math.max(0, Math.min(progress, 1)); // 0~1로 제한
+
+    // 더 빨리 활성화되도록 임계값 낮추기
+    const threshold = 0.1;
+
+    highlights.forEach((el) => {
+      if (progress > threshold) {
+        el.classList.add('active');
+      } else {
+        el.classList.remove('active');
+      }
+    });
+  });
+</script>
+
+</script>
+
+</body>
+</html>

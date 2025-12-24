@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>interview2</title>
+    <style>
+        @font-face {
+      font-family: 'Pretendard-Regular';
+      src: url('https://fastly.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-Regular.woff') format('woff');
+      font-weight: 400;
+      font-style: normal;
+    }
+
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Pretendard-Regular', sans-serif;
+    line-height: 28px;
+    background: white;
+}
+
+.header {
+  position: sticky;
+  top: 0; 
+  background-color: rgb(255, 255, 255); 
+  border-bottom: 2px dashed #e8e8e8;
+  z-index: 10;
+  border-bottom-right-radius: 30%;
+border-bottom-left-radius: 30%;
+
+
+}
+
+.notice {
+  padding: 10px 15px 8px 30px; 
+  margin-top: 0; 
+  margin-bottom: 0;
+  text-align: right;
+  font-size: 14px;
+  font-size: clamp(12px, 3vw, 14px); 
+  line-height: 20px;
+}
+
+.divider {
+  border: none;
+  height: 1px;
+  background-color: transparent;
+  width: 100%;
+  margin: 0; /* 줄 간격 줄이기 */
+}
+
+
+.interview-container {
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 20px 20px;
+}
+
+.bubble {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: all 0.8s ease;
+  max-width: 80%;
+  padding: 14px 17px;
+  border-radius: 15px;
+  margin: 20px 0;
+  position: relative;
+  text-align: justify;
+}
+
+.bubble.show {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.question {
+  background: linear-gradient(180deg, #f0f0f0, #ffffff);
+  align-self: flex-end;
+  margin-left: auto;
+  border-bottom-right-radius: 0;
+      border: 1.5px solid #ddd;
+box-shadow: inset 0 2px 3px rgba(0, 0, 0, 0.25), inset 0 -2px 3px rgba(0, 0, 0, 0.25);
+
+}
+
+.answer {
+background: linear-gradient(0deg, #CBAACB,#dbc5db, #fbf3fb, #fffbff);
+  align-self: flex-start;
+  margin-right: auto;
+        border-bottom-left-radius: 0;
+      border: 1.5px solid #ddd;
+box-shadow: inset 0 2px 2px rgba(0, 0, 0, 0.25), inset 0 -2px 2px rgba(0, 0, 0, 0.25);
+}
+
+
+
+/*
+.question {
+align-self: flex-end;
+margin-left: auto;
+          border-bottom-right-radius: 0;
+      border: 2px solid #e2dcdc;
+
+}
+
+.answer {
+  align-self: flex-start;
+  margin-right: auto;
+        border-bottom-left-radius: 0;
+      border: 2px solid #ff7777;
+}
+      */
+      
+    </style>
+</head>
+<body>
+  <header class="header">
+    <hr class="divider">
+  <p class="notice">
+    ※ 본 인터뷰는 작가님의 의사를 반영하여<br>
+  어머님께서 대신 답변해주신 내용을 포함하고 있습니다.
+  </p>
+  </header>
+
+    <div class="interview-container">
+  <div class="bubble question">Q. 작가님께서 4살때부터 미술에 재능을 보이기 시작했다는 기사 인터뷰를 보았습니다. 어떻게 미술을 시작하셨는지, 오랜시간 어떤 마음으로 작업을 하시는지 궁금합니다.</div>
+  <div class="bubble answer">A. 좋은 감정, 주로 꽃을 그릴때 더 좋아요. (작가님 답변) 어려서 부터 무언가를 남다르게 표현했어요. 잔디를 오려서 붙이는데 종이에 납작하게 붙이는 게 아니라 입체적으로 세워서 붙였어요. 슬리퍼를 그릴 때도 슬리퍼를 뒤집어 둔 모습에 바닥 색을 에쁘게 채색하는 걸 보고 좀 다르다는걸 느끼게 된 것 같아요. 또 한강 민들레를 해처럼 그리면서. 위에서 보는 민들레 모습을 그리기도 하고, 나무를 그리면 색동으로 칠했어요. 자신의 시선대로 그리기를 좋아하고 또 주변 선생님들이 재능이 있다고 얘기해주셔서 자연스럽게 미술작가의 길을 가게 된 것 같습니다.</div>
+
+  <div class="bubble question">Q. 풍경을 주로 그리게된 이유, 풍경을 좋아하게 된 이유가 있으신가요?</div>
+  <div class="bubble answer">A. 사진 찍고 여행 다니는 걸 좋아해요. 정원이랑 자연이 잘 꾸며진 호텔에 가는 것도 엄청 좋아해서 아마 여의도 호텔은 거의 다 가봤을 거에요. 그러면서 풍경을 더 좋아하고 풍경을 주로 그리게 된 것 같아요.</div>
+
+   <div class="bubble question">Q. 작가님은 풍경을 그릴 때 어디서 영감을 받으시나요?</div>
+  <div class="bubble answer">A. 직접 찍은 사진을 보고 재해석 해요. 서울대공원을 한달에 20번정도를 방문한 적이 있어요. 한동안 홍학에 빠져서 그리다 모습이 기억나지 않으면 꼭 직접 보러 서울대공원을 가야 했어요. 집 앞에 수국을 한참 관찰하고, 그대로 그리지 않았던 적도 있어요. 아마 꽃이 이렇게 필 것이다-라고 상상을 하고 작업에 임하는 것 같아요.</div>
+
+  <div class="bubble question">
+   Q. 이번에 함께 할 전시에서는 향기와 풍경을 연결한 기획을 선보이려고 합니다. 작가님이 평소 좋아하시는 향기가 있나요?</div>
+  <div class="bubble answer">A. 꽃을 좋아해요. 꽃이 예뻐서 좋아하지만, 꽃들이 모여있는 곳에서는 가끔 코를 대고 향을 맡기도 합니다.</div>
+
+  <div class="bubble question">
+   Q. 작가님의 작품을 통해 어떤 메세지를 전달하고 싶으신가요?</div>
+  <div class="bubble answer">A. 사람들이 전시에 와서 작품을 감상하고 기분 좋은 표정을 짓는 걸 다래가 좋아해요. 기분 좋을 때는 그림을 톡톡 두드리고 다니는데, 전시를 할 때면 그런 행동을 하더라고요. 사람들이 작품을 통해 기쁨을 느꼈으면 좋겠습니다.</div>
+
+  
+
+  <script src="interview.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>about+Gallery</title>
+  <style>
+    body {
+      background: white;
+      margin: 0;
+      font-family: sans-serif;
+      overflow-x: hidden;
+      overflow: auto;
+      -ms-overflow-style: none;  /* IE, Edge */
+      scrollbar-width: none;     /* Firefox */
+             padding-bottom: 150px; 
+
+    }
+
+    body::-webkit-scrollbar {
+      display: none;             /* Chrome, Safari */
+    }
+
+    .header {
+      text-align: center;
+      padding: 30px 20px 10px;
+    }
+
+    .header h1 {
+      font-size: 32px;
+      color: #c86b5b ;
+    }
+
+    .header .names {
+      font-size: 14px;
+      color: #444;
+      max-width: 700px;
+      margin: 0 auto 10px;
+      line-height: 1.7;
+      padding: 0 15px 0 15px;
+      text-align: justify;
+    }
+
+    .header .filter {
+      font-size: 13px;
+      margin-top: 30px;
+      color: #555;
+    }
+
+    .side-text {
+      position: fixed;
+      top: 50%;
+      transform: translateY(-50%);
+      writing-mode: vertical-rl;
+      text-orientation: mixed;
+      font-size: 12px;
+      color: #c86b5b;
+      opacity: 0.8;
+      z-index: 2;
+    }
+
+    .side-text.left {
+      left: 5px;
+      transform: translateY(-50%) rotate(-180deg);
+    }
+
+    .side-text.right {
+      right: 5px;
+    }
+
+    /* 슬라이드 스타일 */
+    .dots {
+      display: flex;
+      justify-content: center;
+      margin-bottom: 20px;
+      gap: 8px;
+    }
+
+    .dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: #ccc;
+    }
+
+    .dot.active {
+      background: #c86b5b;
+    }
+
+    .slider-container {
+      width: 90%;
+      height: 350px;
+      max-height: 100%;
+      overflow: hidden;
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transform: translateX(-50%);
+      left: 50%
+    }
+
+    .slider {
+      position: relative;
+      align-items: center;
+      justify-content: center;
+      width: 100%;
+      height: 100%;
+    }
+
+    .slide {
+      width: 100%;
+      height: 100%;
+      position: absolute;
+      top: 0;
+      left: 0;
+      opacity: 0;
+      transition: opacity 0.5s ease;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .slide.active {
+      opacity: 1;
+      z-index: 2;
+    }
+
+    .slide img {
+      max-height: 80%;
+      max-width: 90%;
+      object-fit: contain;
+      display: block;
+    }
+
+    .caption {
+      margin-top: 10px;
+      font-size: 12px;
+      text-align: center;
+      color: #333;
+      padding: 0 10px;
+    }
+  </style>
+</head>
+<body>
+  <div class="side-text left">← Chanheum Park ←</div>
+  <div class="side-text right">→ A Moment , A Breath →</div>
+
+  <div class="header">
+    <h1>박찬흠</h1>
+    <div class="names">
+      박찬흠 작가는 펜을 쥐고 선을 그린다. 밑그림 없이 시작된 선들은
+자유롭게 흐르며, 하나의 풍경이 된다. 그 선 위에는 작가의 시선, 감정,
+리듬이 고요히 얽혀 있다.
+
+별, 나무, 산 - 어릴 적부터 좋아하던 자연의 이미지들은 지금도 그의
+작업 속에서 자주 모습을 드러낸다.
+
+ 그림은 늘 그날의 기분을 닮아 있고, 감정은 선을 따라 조용히 번져
+간다. 꽃잎의 향과 나뭇잎의 냄새처럼 작가는 기억 속의 냄새를 오래
+간직한다. 그 감각은 그림 속에도 스며들어, 종종 사람들은 향기가 나는
+것 같다고 말한다.
+
+ “제 그림을 보고 잠시 쉬어갈 수 있었으면 좋겠어요.”
+
+ 누군가의 마음이 잠시 머무를 수 있다면, 그것만으로도 충분하다는
+마음으로 그는 오늘도 풍경을 그려간다.
+    </div>
+    <div class="filter"><strong>#선으로말하다 #나만의시선 #향속에머물다</strong></div>
+  </div>
+
+  <!-- 슬라이드 삽입 시작 -->
+  <div class="slider-container">
+    <div class="slider" id="slider">
+      <div class="slide active">
+        <img src="pchmain.jpeg" alt="">
+        <div class="caption">《시든 꽃에 물을 주듯》,
+2019, acrylic on canvas, 162x112cm</div>
+      </div>
+      <div class="slide">
+        <img src="pch1.jpg" alt="">
+        <div class="caption">《별고을》, 2022, acrylic on canvas, 80.3×116.7cm</div>
+      </div>
+      <div class="slide">
+        <img src="pch2.jpg" alt="">
+        <div class="caption">《별빛이 키우는》, 2023,acrylic on canvas, 53.0x45.5cm</div>
+      </div>
+      <div class="slide">
+        <img src="pch3.jpg" alt="">
+        <div class="caption">《나른한 바람》, 2024, mixed media on canvas, 90.9×72.7cm</div>
+      </div>
+      <div class="slide">
+        <img src="pch4.jpg" alt="">
+        <div class="caption">《어머니 꽃》, 2024, acrylic on canvas, 80.3x116.7cm</div>
+      </div>
+
+      <div class="slide">
+        <img src="pch5.jpg" alt="">
+        <div class="caption">《아름다운 밤1》, 2024,  acrylic on canvas, 53x41cm</div>
+      </div>
+      <div class="slide">
+        <img src="pch6.jpg" alt="">
+        <div class="caption">《아름다운 밤2》, 2024, acrylic on canvas, 53x41cm</div>
+      </div>
+    </div>
+  </div>
+    <div class="dots" id="dots"></div>
+
+  <!-- 슬라이드 삽입 끝 -->
+
+    <script src="about.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>interview3</title>
+    <style>
+        @font-face {
+      font-family: 'Pretendard-Regular';
+      src: url('https://fastly.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-Regular.woff') format('woff');
+      font-weight: 400;
+      font-style: normal;
+    }
+
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Pretendard-Regular', sans-serif;
+    line-height: 26px;
+    background: white;
+    font-family: 'Pretendard', sans-serif;
+}
+
+.header {
+  position: sticky;
+  top: 0; 
+  background-color: rgb(255, 255, 255); 
+  border-bottom: 2px dashed #e8e8e8;
+  z-index: 15;
+  border-bottom-right-radius: 30%;
+border-bottom-left-radius: 30%;
+
+
+}
+
+.notice {
+  padding: 10px 15px 8px 30px; 
+  margin-top: 0; 
+  margin-bottom: 0;
+  text-align: right;
+  font-size: 14px;
+  font-size: clamp(12px, 3vw, 14px); 
+  line-height: 20px;
+}
+
+.divider {
+  border: none;
+  height: 1px;
+  background-color: transparent;
+  width: 100%;
+  margin: 0; /* 줄 간격 줄이기 */
+}
+
+
+.interview-container {
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 20px 20px;
+}
+
+.bubble {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: all 0.8s ease;
+  max-width: 80%;
+  padding: 14px 17px;
+  border-radius: 15px;
+  margin: 18px 0;
+  position: relative;
+  text-align: justify;
+}
+
+.bubble.show {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.question {
+background: linear-gradient(180deg, #f0f0f0, #ffffff);  
+align-self: flex-end;
+margin-left: auto;
+border-bottom-right-radius: 0;
+border: 1.5px solid #ddd;
+box-shadow: inset 0 2px 3px rgba(0, 0, 0, 0.25), inset 0 -2px 3px rgba(0, 0, 0, 0.25);
+
+}
+
+.answer {
+background: linear-gradient(0deg, #fbeedd,#fff5ea, #fffdf7, #fffefa);  
+align-self: flex-start;
+  margin-right: auto;
+        border-bottom-left-radius: 0;
+      border: 1.5px solid #DDD;
+      box-shadow: inset 0 2px 3px rgba(0, 0, 0, 0.25), inset 0 -2px 3px rgba(0, 0, 0, 0.25);
+
+}
+
+.highlight {
+    transition: color 0.4s ease;
+    color: #bbb;
+  }
+  .highlight.active {
+    color: red;
+    font-weight: bold;
+  }
+
+/*배경없는 버전
+.bubble {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: all 0.8s ease;
+  max-width: 80%;
+  padding: 14px 20px;
+  border-radius: 30px;
+  margin: 20px 0;
+  position: relative;
+}
+
+.bubble.show {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.question {
+align-self: flex-end;
+margin-left: auto;
+          border-bottom-right-radius: 0;
+      border: 2px solid #ddd;
+
+}
+
+.answer {
+  align-self: flex-start;
+  margin-right: auto;
+        border-bottom-left-radius: 0;
+      border: 2px solid #F5E9DA;
+
+}
+*/
+
+    </style>
+</head>
+<body>
+  <header class="header">
+    <hr class="divider">
+  <p class="notice">
+    ※ 본 인터뷰는 작가님의 의사를 반영하여<br>
+  어머님께서 대신 답변해주신 내용을 포함하고 있습니다.
+  </p>
+  </header>
+
+    <div class="interview-container">
+  <div class="bubble question">Q. 
+    자연 속에서의 어린 시절이 지금의 작업에 뿌리가 되었다고 들었습니다. 당시 기억 중, 작업할 때 떠오르는 장면이나 느낌이 있으신가요?</div>
+  <div class="bubble answer">A. 
+    저희 아이가 원주에서 10년을 살았어요. 그 시절이 그림의 뿌리가 되어준 것 같아요. 쥐불놀이하고, 오디 따 먹고, 당근 뽑고… 그런 자연 속에서 뒹굴던 기억들이 아이 그림 속에 고스란히 들어가 있더라고요. 작업을 하다 보면 가끔 그런 장면들이 불쑥 떠오르는 것 같아요. 그래서인지 그림을 보면 저도 그 시절이 생각나요.</div>
+
+  <div class="bubble question">Q. 
+    같은 ‘꽃’을 그리더라도 오늘과 어제의 감각이 다르다고 느껴지시나요? 어떤 점이 다른가요?</div>
+  <div class="bubble answer">A. 
+    혜신이는 같은 꽃을 그리더라도 매번 느낌이 달라요.
+    하루하루 감정이 다르다 보니까, 똑같은 꽃을 그렸다고 해도 전혀 다른 색, 다른 분위기가 나와요. 정확하게 보고 그리는 게 아니라, 마음속에 남아 있는 인상이나 느낌을 따라 그리다 보니 항상 새로워요.</div>
+   <div class="bubble question">Q. 
+    그림을 통해 사람들과 감정을 나눈 순간이나, 말보다 그림이 더 잘 통한다고 느끼신 경험이 있으신가요?</div>
+  <div class="bubble answer">A. 첫 전시를 했을 때 정말 많은 걸 느꼈어요. 처음으로 이 아이와 깊은 대화를 나눈 것 같은 기분이었거든요. 어떤 아저씨가 그림 앞에서 오래 서성이다가, 자기도 강원도 바닷가가 고향인데 고향 냄새가 난다고 말씀하셨어요. 그 말을 듣고 정말 깜짝 놀랐어요. 말로는 한 번도 나눠본 적 없는 감정들을 그림으로 나눈 것 같았어요. 그리고 이때부터 저절로 치유작가라는 별칭이 붙여진 것 같아요. 그림을 보면서 치유적인 에너지, 힐링과 동심, 어릴 적으로 돌아갈 수 있는 힘이 있다는 걸 알게 해주었죠.</div>
+  <div class="bubble question">Q. 
+    작품을 통해 사람들이 “따뜻해요”, “기분이 좋아졌어요”라고 말할 때, 작가님은 어떤 기분이 드시나요?</div>
+  <div class="bubble answer">A. 
+    그런 말씀 들을 때마다 아이가 정말 기뻐해요. 그림이 누군가에게 위로가 되고, 행복을 준다는 걸 느끼는 순간마다 저도 울컥하고요. 기대해주는 분들이 생기다 보니까, 아이도 자연스럽게 책임감을 느끼는 것 같아요. 한 번은 하루 6시간씩 작업해서 15일 만에 큰 그림을 완성한 적도 있어요. 기다려주는 마음에 보답하고 싶어서요.</div>
+   <div class="bubble question">Q. 
+    풍경을 주로 그리게 된 이유, 풍경을 좋아하게 된 이유가 있으신가요?</div>
+  <div class="bubble answer">A. 
+    어릴 적에 살던 동네가 정말 자연이 가까운 곳이었어요. 길만 건너면 바로 논밭이었고, 곶감 매달고, 비 오고 나면 흙냄새 나는 그런 동네였죠. 그런 데서 자라다 보니 자연에 대한 감각이 몸에 배었어요. 풍경을 보면 설레고, 감동받고, 그래서 그림으로 그걸 표현하려는 것 같아요.</div>
+  <div class="bubble question">Q. 
+    이번 전시에서 ‘향기’와 ‘풍경’을 연결해보려 합니다. 평소 좋아하시는 향기나, 기억에 남는 향이 있을까요?</div>
+  <div class="bubble answer">A. 
+    라일락 향도 좋아하고, 특히 비 온 뒤 흙냄새처럼, 그런 시골 냄새가 아직도 마음에 깊이 남아 있는 것 같아요.
+    숲을 많이 다녀서 기억에 많이 남아있는 향일 거예요.</div> 
+  <div class="bubble question">Q. 
+    작품을 통해 어떤 메시지를 전달하고 싶으신가요?</div>
+  <div class="bubble answer">A. 
+    혜신이는 사람들의 의도에 맞게 작품을 그리지않고, 자신의 소신대로 작품을 그려나가요. 순수하게 자신이 좋아하고,  행복한 감정들을 그림을 통해 사람들과 나누고 싶어 해요. 계절이 바뀌는 모습, 자연의 살아 있는 느낌 같은 것들이요.
+     자연을 좋아하는 그 마음이 전해졌으면 좋겠다고 해요.</div>
+  <div class="bubble question">Q. 
+    앞으로의 계획이나 꿈이 있다면 들려주세요.</div>
+  <div class="bubble answer">A. 
+    고정적이지 않고 본인만의 스타일을 잃지 않은 채 작가 활동을 이어나가고 싶어요. 무엇보다 자기 그림을 보고 사람들이 행복해졌으면 좋겠다는 거예요. 지금처럼 즐겁고 재밌게 그림을 그리면서, 혜신이의 그림이 누군가의 마음을 따뜻하게 해줄 수 있다면 그걸로 충분해요.</div> 
+</div>
+  
+
+  <script src="interview.js"></script>
+
+</body>
+</html>

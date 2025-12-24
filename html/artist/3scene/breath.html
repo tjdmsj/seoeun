@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Forest Haze</title>
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+    @font-face {
+      font-family: 'Pretendard-Regular';
+      src: url('https://fastly.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-Regular.woff') format('woff');
+      font-weight: 400;
+      font-style: normal;
+    }
+
+    body {
+      margin: 0;
+      padding: 0;
+      background: white;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      font-family: 'Pretendard-Regular', sans-serif;
+    }
+
+    .polaroid-container {
+      width: 90%;
+      max-width: 80%;
+      background: #ffb44a36;
+      border-radius: 20px;
+      padding: 10px;
+      box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
+      display: flex;
+      flex-direction: column;
+      gap: 1.5vw;
+      position: relative;
+      z-index: 1;
+    }
+
+    .top,
+    .bottom {
+      display: grid;
+      grid-template-columns: 20% 80%;
+      gap: 1vw;
+    }
+
+    .vertical-text {
+      writing-mode: vertical-rl;
+      text-orientation: mixed;
+      font-size: 1.2rem;
+      color: #444;
+      font-weight: bold;
+      padding-top: 1rem;
+      position: relative;
+      top: 0;
+      left: -10px;
+    }
+
+    .image-area {
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .image-area img {
+      width: 220px;
+      height: 300px;
+      object-fit: cover;
+      border: 1px solid #ddd;
+    }
+
+    .bottom-text {
+      font-size: 13px;
+      color: #333;
+      line-height: 1.6;
+      padding-top: 12px;
+      text-align: justify;
+      padding-right: 5px;
+    }
+
+    .highlight {
+      color: #a8753e;
+      font-weight: bold;
+    }
+
+    @media (max-width: 500px) {
+      .vertical-text {
+        font-size: 1rem;
+      }
+
+      .bottom-text {
+        font-size: 13px;
+      }
+    }
+.conveyg a{
+text-decoration:none; color:#966c4091 ; text-decoration-line: underline; font-weight:bold;
+    }
+.lime-container {
+  position: absolute; 
+  width: 100%;
+   overflow: hidden;  
+  min-height: 200vh;   /* 화면 높이보다 크게 */
+  z-index: 0;
+  pointer-events: none;
+}
+    .lime {
+  position: relative ;
+  width: 40px;
+  height: 40px;
+  background-image: url('leaf3.png'); /* ← 꽃잎 이미지 */
+  background-size: contain;
+  background-repeat: no-repeat;
+  animation: float 3s ease-in-out infinite;
+  opacity: 0.4;
+}
+.lime1 {
+  background-image: url('leaf3.png');
+}
+
+.lime2 {
+  background-image: url('leaf4.png');
+}
+
+    @keyframes float {
+      0% { transform: translateY(0px); }
+      50% { transform: translateY(-15px); }
+      100% { transform: translateY(0px); }
+    }
+  </style>
+</head>
+<body>
+  <div class="lime-container"> <div class="lime"></div></div>
+
+  <div class="polaroid-container">
+    <div class="top">
+      <div class="vertical-text">
+        박혜신<br>양천공원 비체나라
+      </div>
+      <div class="image-area">
+        <img src="phsmain.jpg" alt="Forest Haze">
+      </div>
+    </div>
+    <div class="bottom">
+      <div class="vertical-text" style="color: #a8753e;">
+        with<br>Forest Haze
+      </div>
+      <div class="bottom-text">
+        꽃잎이 흩어져 내린 공원,<br>어느 순간을 지나온 풍경이 조용히 펼쳐진다. 그 위에 은은히 번지는 향은,<br>
+        <span class="highlight">Forest Haze</span><br>
+        부드러운 시더우드와 잔잔한 머스크가 어우러진
+        시원한 우디 향이 숲속을 스치는 바람처럼 남는다.
+        <br> <span class="conveyg" >
+          <a href="https://conveyg.com/all/?idx=185">
+        > 향 더 알아보러 가기</a></span>
+      </div>
+    </div>
+  </div>
+
+         <script src="breath.js"></script>
+
+
+
+</body>
+</html>

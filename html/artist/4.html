@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+ <meta property="og:title" content="한 컷, 한 숨">
+  <meta property="og:type" content="website">
+<meta property="og:image" content="https://d2w9rnfcy7mm78.cloudfront.net/38210967/original_a1f72f8e03d978150ac565ea0bf35812.jpg">
+<meta property="og:description" content="한 숨 들이켰을 뿐인데, 풍경이 들어왔다">
+<meta property="og:url" content="https://np-art.site/">
+  <title>1 MOMENT</title>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,500;0,700;1,300;1,700&amp;family=Poppins:ital,wght@0,400;0,700;1,400;1,700">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bitcount+Grid+Double:wght@100..900&display=swap" rel="stylesheet">
+
+  <style type="text/css">
+  
+    @font-face {
+    font-family: 'HakgyoansimByeolbichhaneulTTF-B';
+    src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/2408-5@1.0/HakgyoansimByeolbichhaneulTTF-B.woff2') format('woff2');
+    font-weight: 700;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'HSBombaram21-Regular';
+    src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_2302@1.0/HSBombaram21-Regular.woff2') format('woff2');
+    font-weight: normal;
+    font-style: normal;
+}
+    html, body {
+      margin: 0;
+      padding: 0;
+      background-color: black;
+      height: 100%;
+      font-family: sans-serif;
+      overflow: hidden;
+    }
+    * {
+  box-sizing: border-box;
+}
+
+    @font-face {
+      font-family: 'Pretendard-Regular';
+      src: url('https://fastly.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-Regular.woff') format('woff');
+      font-weight: 400;
+      font-style: normal;
+    }
+
+  .wrapper {
+      position: relative;
+      max-width: 430px;
+      margin: 0 auto;
+      height: 100vh;
+      background-color: white;
+      display: flex;
+      flex-direction: column;
+    
+    }
+/* 모바일 등 화면이 430px 이하일 때 */
+@media (max-width: 430px) {
+  .wrapper {
+    width: 100%; /* 화면 폭 꽉 채우기 */
+  }
+}
+
+
+.header-watercolor-bg {
+    position: absolute;
+    top: 0;
+    left: -10px;
+    width: 102%;
+    padding: 0;
+    height: 100%;
+    filter: url(#watercolorFilter);
+    background: linear-gradient(180deg, #EF7C7C,#EF7C7C, #f3f4ec);
+    z-index: 0;
+    pointer-events: none;
+    z-index: 0; 
+  }
+
+
+.nav-arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 1.5rem;
+  color: black;
+  text-decoration: none;
+  padding: 8px 16px;
+  cursor: pointer;
+  user-select: none;
+    font-family: 'Bitcount Grid Double', system-ui;
+
+}
+
+.left-arrow {
+  left: 0;
+}
+
+.right-arrow {
+  right: 0; /* wrapper padding과 동일하게 맞춤 */
+}
+
+
+   .sticky-header {
+  position: sticky;
+  top: 0;
+  background: linear-gradient(180deg, #EF7C7C,#EF7C7C, #f3f4ec);
+  z-index: 100;
+  display: grid;
+  grid-template-rows: auto auto;
+  padding: 5px;
+
+
+}
+
+/* 상단: 가운데 텍스트 */
+.header-top {
+  position: relative;
+  padding: 16px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+    width: 100%;
+  text-align: center;
+
+
+}
+
+.scene-title {
+  font-size: 1.2rem;
+  font-family: 'HSBombaram21-Regular', sans-serif;
+  font-weight: 300;
+  color: black;
+  text-decoration: none;
+  display: inline-block;
+
+}
+
+/* 하단: 3칸 메뉴 */
+.header-bottom {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  text-align: center;
+  z-index: 0; 
+}
+
+.menu-link {
+  padding: 12px 0;
+  font-family: 'Pretendard-Regular', sans-serif;
+  font-size: 0.95rem;
+  text-decoration: none;
+  color: black;
+  transition: background-color 0.3s;
+}
+
+.menu-link:hover {
+  background-color: rgba(0, 0, 0, 0.05);
+}
+
+    
+ .content {
+  flex-grow: 1;
+  padding: 0;
+  padding-top: 13px; /* 헤더 높이와 같거나 조금 더 크게 */
+  z-index: 0;
+}
+
+    .lang {
+      display: none;
+    }
+
+    .lang.active {
+      display: block;
+    }
+  
+ 
+
+/*font-family: 'Cormorant Garamond', serif;
+  font-weight: 700;
+.menu-bar {
+  font-family: 'Poppins', sans-serif;
+  font-weight: 400;
+}
+*/
+.content {
+  font-family: 'adobe-garamond-pro', serif;
+  font-style: italic;
+  font-weight: 400;
+}
+
+
+.iframe-wrapper {
+  width: 100%;
+  height: 100%;
+}
+
+.animate {
+  animation: slideDownFade 1s ease-out forwards;
+}
+
+@keyframes slideDownFade {
+  0% {
+    opacity: 0;
+    transform: translateY(-30px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+  </style>
+</head>
+<body>
+  <!--이다래-보라
+박찬흠-진초록
+박혜신-베이지
+강선아-연두-->
+  <div class="wrapper">
+    <!-- 헤더 -->
+    <header class="sticky-header">
+      <div class="header-watercolor-bg"></div>
+  <div class="header-top">
+  <a href="3.html" class="nav-arrow left-arrow">«</a>
+  <a href="4.html" class="scene-title">4 MOMENT</a>
+  <a href="../home.html" class="nav-arrow right-arrow" style="font-size:medium;">⌂</a>
+</div>
+  <div class="header-bottom">
+  <a href="#" class="menu-link" onclick="loadPage('4scene/breath.html')">Breath</a>
+  <a href="#" class="menu-link" onclick="loadPage('4scene/interview.html')">Interview</a>
+  <a href="#" class="menu-link" onclick="loadPage('4scene/about.html')">About</a>
+</div>
+</header>
+
+    <!-- 수채화 SVG 필터 정의 -->
+<svg style="position: absolute; width: 0; height: 0;">
+  <filter id="watercolorFilter" x="-20%" y="-20%" width="140%" height="140%" color-interpolation-filters="sRGB">
+    <feTurbulence type="turbulence" baseFrequency="0.015" numOctaves="2" result="turbulence"/>
+    <feDisplacementMap in="SourceGraphic" in2="turbulence" scale="25" xChannelSelector="R" yChannelSelector="G"/>
+  </filter>
+</svg>
+
+    <!-- 콘텐츠 Home About Interview Artwork & Scent-->
+   <main class="content">
+  <div class="iframe-wrapper" id="iframeWrapper">
+    <iframe 
+      id="mainFrame"
+      src="4scene/breath.html"
+      frameborder="0"
+      width="100%" 
+      height="100%">
+    </iframe>
+  </div>
+</main>
+
+  </div>
+
+  <script>
+    // lang 파라미터 가져오기
+    function getLangFromURL() {
+      const params = new URLSearchParams(window.location.search);
+      return params.get("lang") || "ko";
+    }
+
+    // 언어 적용
+    function applyLanguage(lang) {
+      document.querySelectorAll('.lang').forEach(el => {
+        el.classList.remove('active');
+        if (el.classList.contains(lang)) el.classList.add('active');
+      });
+
+      // 메뉴 링크에 lang 파라미터 붙이기
+      document.querySelectorAll('.menu-bar a').forEach(link => {
+        const url = new URL(link.href, location.origin);
+        url.searchParams.set('lang', lang);
+        link.href = url.toString();
+      });
+    }
+
+    // 메뉴 토글
+    function toggleMenu() {
+      const menu = document.getElementById('menuBar');
+      menu.style.display = menu.style.display === 'grid' ? 'none' : 'grid';
+    }
+
+    // 초기 적용
+    window.addEventListener('DOMContentLoaded', () => {
+      const lang = getLangFromURL();
+      applyLanguage(lang);
+    });
+
+    
+  function loadPage(page) {
+    document.getElementById('mainFrame').src = page;
+  }
+
+function loadPage(src) {
+    const iframe = document.getElementById('mainFrame');
+    const wrapper = document.getElementById('iframeWrapper');
+
+    // 클래스 제거 → 리플로우 → 클래스 재적용
+    wrapper.classList.remove('animate');
+    void wrapper.offsetWidth;
+    wrapper.classList.add('animate');
+
+    // iframe src 변경
+    iframe.src = src;
+  }
+  </script>
+</body>
+</html>

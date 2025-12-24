@@ -1,0 +1,422 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>전시 도면</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: #f5f5f5;
+            padding: 20px;
+        }
+
+        .map-container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 12px;
+            padding: 20px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .floor-map {
+            width: 100%;
+            height: auto;
+            border: 1px solid #e0e0e0;
+            border-radius: 8px;
+            background: #fafafa;
+        }
+
+        .artist-point {
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .artist-point:hover {
+            opacity: 0.8;
+            transform: scale(1.1);
+        }
+
+        .artist-label {
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .artist-name-label {
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        /* 팝업 스타일 */
+        .popup-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 1000;
+            display: none;
+        }
+
+        .popup-overlay.show {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .popup {
+            background: white;
+            border-radius: 16px;
+            padding: 30px;
+            max-width: 500px;
+            width: 90%;
+            max-height: 80vh;
+            overflow-y: auto;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+            position: relative;
+        }
+
+        .popup-close {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: none;
+            border: none;
+            font-size: 24px;
+            cursor: pointer;
+            color: #666;
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .popup-close:hover {
+            background: #f0f0f0;
+        }
+
+        .artist-number {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: 600;
+            font-size: 18px;
+            margin-bottom: 16px;
+        }
+
+        .artist-name {
+            font-size: 24px;
+            font-weight: 600;
+            margin-bottom: 8px;
+            color: #333;
+        }
+
+        .artist-name-en {
+            font-size: 16px;
+            color: #666;
+            margin-bottom: 16px;
+        }
+
+        .artist-description {
+            color: #555;
+            line-height: 1.6;
+            margin-bottom: 20px;
+        }
+
+        .hashtags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-bottom: 20px;
+        }
+
+        .hashtag {
+            background: #f0f0f0;
+            padding: 4px 12px;
+            border-radius: 16px;
+            font-size: 14px;
+            color: #555;
+        }
+
+        .artworks {
+            margin-top: 20px;
+        }
+
+        .artworks h4 {
+            font-size: 18px;
+            margin-bottom: 12px;
+            color: #333;
+        }
+
+        .artwork-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 8px;
+            background: #f8f8f8;
+            border-radius: 8px;
+            margin-bottom: 8px;
+        }
+
+        .artwork-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            flex-shrink: 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="map-container">
+        <svg class="floor-map" viewBox="0 0 600 500" xmlns="http://www.w3.org/2000/svg">
+            <!-- 전시 공간 배경 -->
+            <rect x="50" y="50" width="500" height="400" 
+                  fill="white" 
+                  stroke="#e0e0e0" 
+                  stroke-width="2" rx="8"/>
+            
+            <!-- 출입구 -->
+            <rect x="280" y="50" width="40" height="8" 
+                  fill="#888" rx="4"/>
+            <text x="300" y="40" text-anchor="middle" 
+                  fill="#666" font-size="12">출입구</text>
+            
+            <!-- 전시 공간 구역 표시 -->
+            <rect x="70" y="70" width="180" height="120" 
+                  fill="none" stroke="#ddd" 
+                  stroke-width="1" stroke-dasharray="5,5" rx="4"/>
+            <rect x="270" y="70" width="180" height="120" 
+                  fill="none" stroke="#ddd" 
+                  stroke-width="1" stroke-dasharray="5,5" rx="4"/>
+            <rect x="470" y="70" width="60" height="120" 
+                  fill="none" stroke="#ddd" 
+                  stroke-width="1" stroke-dasharray="5,5" rx="4"/>
+            <rect x="70" y="210" width="180" height="120" 
+                  fill="none" stroke="#ddd" 
+                  stroke-width="1" stroke-dasharray="5,5" rx="4"/>
+            <rect x="270" y="210" width="180" height="120" 
+                  fill="none" stroke="#ddd" 
+                  stroke-width="1" stroke-dasharray="5,5" rx="4"/>
+            <rect x="470" y="210" width="60" height="120" 
+                  fill="none" stroke="#ddd" 
+                  stroke-width="1" stroke-dasharray="5,5" rx="4"/>
+            <rect x="170" y="350" width="260" height="80" 
+                  fill="none" stroke="#ddd" 
+                  stroke-width="1" stroke-dasharray="5,5" rx="4"/>
+            
+            <!-- 권장 동선 표시 -->
+            <path d="M 160 130 Q 200 110 240 130 Q 280 150 320 130 Q 360 110 400 130 Q 440 150 480 130 Q 520 110 520 160 Q 520 200 480 220 Q 440 240 400 220 Q 360 200 320 220 Q 280 240 240 220 Q 200 200 160 220 Q 120 240 120 280 Q 120 320 160 340 Q 200 360 240 340 Q 280 320 320 340 Q 360 360 400 340 Q 440 320 480 340 Q 520 360 520 380"
+                  fill="none" stroke="#ccc" 
+                  stroke-width="2" stroke-dasharray="8,4"/>
+            
+            <!-- 벽과 기둥 -->
+            <rect x="240" y="200" width="8" height="30" 
+                  fill="#ccc" rx="2"/>
+            <rect x="360" y="200" width="8" height="30" 
+                  fill="#ccc" rx="2"/>
+            <rect x="180" y="340" width="30" height="8" 
+                  fill="#ccc" rx="2"/>
+            <rect x="390" y="340" width="30" height="8" 
+                  fill="#ccc" rx="2"/>
+            
+            <!-- 작가 위치들 -->
+            <!-- 김현우 (1번) -->
+            <g class="artist-group" data-artist-id="1">
+                <circle cx="150" cy="100" r="20" fill="#8B5CF6" 
+                        stroke="white" stroke-width="2" class="artist-point"/>
+                <text x="150" y="105" text-anchor="middle" 
+                      fill="white" font-size="14" font-weight="600">1</text>
+                <rect x="110" y="130" width="80" height="20" 
+                      fill="white" stroke="#8B5CF6" 
+                      stroke-width="1" rx="4" class="artist-label"/>
+                <text x="150" y="143" text-anchor="middle" 
+                      fill="#8B5CF6" font-size="12" class="artist-name-label">김현우</text>
+            </g>
+            
+            <!-- 이수진 (2번) -->
+            <g class="artist-group" data-artist-id="2">
+                <circle cx="400" cy="150" r="20" fill="#EF4444" 
+                        stroke="white" stroke-width="2" class="artist-point"/>
+                <text x="400" y="155" text-anchor="middle" 
+                      fill="white" font-size="14" font-weight="600">2</text>
+                <rect x="360" y="180" width="80" height="20" 
+                      fill="white" stroke="#EF4444" 
+                      stroke-width="1" rx="4" class="artist-label"/>
+                <text x="400" y="193" text-anchor="middle" 
+                      fill="#EF4444" font-size="12" class="artist-name-label">이수진</text>
+            </g>
+            
+            <!-- 박민석 (3번) -->
+            <g class="artist-group" data-artist-id="3">
+                <circle cx="250" cy="300" r="20" fill="#D4A574" 
+                        stroke="white" stroke-width="2" class="artist-point"/>
+                <text x="250" y="305" text-anchor="middle" 
+                      fill="white" font-size="14" font-weight="600">3</text>
+                <rect x="210" y="330" width="80" height="20" 
+                      fill="white" stroke="#D4A574" 
+                      stroke-width="1" rx="4" class="artist-label"/>
+                <text x="250" y="343" text-anchor="middle" 
+                      fill="#D4A574" font-size="12" class="artist-name-label">박민석</text>
+            </g>
+            
+            <!-- 최예린 (4번) -->
+            <g class="artist-group" data-artist-id="4">
+                <circle cx="350" cy="250" r="20" fill="#10B981" 
+                        stroke="white" stroke-width="2" class="artist-point"/>
+                <text x="350" y="255" text-anchor="middle" 
+                      fill="white" font-size="14" font-weight="600">4</text>
+                <rect x="310" y="280" width="80" height="20" 
+                      fill="white" stroke="#10B981" 
+                      stroke-width="1" rx="4" class="artist-label"/>
+                <text x="350" y="293" text-anchor="middle" 
+                      fill="#10B981" font-size="12" class="artist-name-label">최예린</text>
+            </g>
+        </svg>
+    </div>
+
+    <!-- 팝업 오버레이 -->
+    <div class="popup-overlay" id="popupOverlay">
+        <div class="popup">
+            <button class="popup-close" id="popupClose">&times;</button>
+            
+            <div class="artist-number" id="popupArtistNumber"></div>
+            <div class="artist-name" id="popupArtistName"></div>
+            <div class="artist-name-en" id="popupArtistNameEn"></div>
+            <div class="artist-description" id="popupDescription"></div>
+            
+            <div class="hashtags" id="popupHashtags"></div>
+            
+            <div class="artworks">
+                <h4>전시 작품</h4>
+                <div id="popupArtworks"></div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // 작가 데이터
+        const artists = {
+            1: {
+                id: 1,
+                name: "김현우",
+                nameEn: "Kim Hyunwoo",
+                description: "현대 조각의 새로운 지평을 열어가는 작가로, 일상의 오브제를 통해 시간과 공간의 의미를 탐구합니다.",
+                artworks: ["시간의 층위", "공간의 기억", "일상의 변주", "침묵의 소리"],
+                hashtags: ["현대조각", "일상의미학", "시공간탐구", "오브제아트"],
+                color: "#8B5CF6"
+            },
+            2: {
+                id: 2,
+                name: "이수진",
+                nameEn: "Lee Sujin",
+                description: "색채와 형태의 조화를 통해 감정의 스펙트럼을 표현하는 회화 작가입니다.",
+                artworks: ["감정의 스펙트럼", "내면의 풍경", "색채의 대화", "꿈의 정원"],
+                hashtags: ["색채미학", "감정표현", "추상회화", "내면탐구"],
+                color: "#EF4444"
+            },
+            3: {
+                id: 3,
+                name: "박민석",
+                nameEn: "Park Minseok",
+                description: "디지털 미디어와 전통 예술의 융합을 추구하는 뉴미디어 아티스트입니다.",
+                artworks: ["디지털 숲", "가상현실 속 진실", "미래의 기억", "AI와의 대화"],
+                hashtags: ["뉴미디어", "AI아트", "디지털융합", "미래예술"],
+                color: "#D4A574"
+            },
+            4: {
+                id: 4,
+                name: "최예린",
+                nameEn: "Choi Yerin",
+                description: "사진과 설치를 통해 도시와 자연의 관계를 탐구하는 작가입니다.",
+                artworks: ["도시의 숨결", "자연으로의 회귀", "경계의 모호함", "시간의 흔적"],
+                hashtags: ["도시사진", "자연회귀", "환경메시지", "설치미술"],
+                color: "#10B981"
+            }
+        };
+
+        // DOM 요소들
+        const popupOverlay = document.getElementById('popupOverlay');
+        const popupClose = document.getElementById('popupClose');
+        const artistGroups = document.querySelectorAll('.artist-group');
+
+        // 팝업 표시 함수
+        function showPopup(artist) {
+            document.getElementById('popupArtistNumber').style.backgroundColor = artist.color;
+            document.getElementById('popupArtistNumber').textContent = artist.id;
+            document.getElementById('popupArtistName').textContent = artist.name;
+            document.getElementById('popupArtistNameEn').textContent = artist.nameEn;
+            document.getElementById('popupDescription').textContent = artist.description;
+
+            // 해시태그 표시
+            const hashtagsContainer = document.getElementById('popupHashtags');
+            hashtagsContainer.innerHTML = '';
+            artist.hashtags.forEach(tag => {
+                const span = document.createElement('span');
+                span.className = 'hashtag';
+                span.textContent = '#' + tag;
+                hashtagsContainer.appendChild(span);
+            });
+
+            // 작품 목록 표시
+            const artworksContainer = document.getElementById('popupArtworks');
+            artworksContainer.innerHTML = '';
+            artist.artworks.forEach(artwork => {
+                const div = document.createElement('div');
+                div.className = 'artwork-item';
+                div.innerHTML = `
+                    <div class="artwork-dot" style="background-color: ${artist.color};"></div>
+                    <span>${artwork}</span>
+                `;
+                artworksContainer.appendChild(div);
+            });
+
+            popupOverlay.classList.add('show');
+        }
+
+        // 팝업 닫기 함수
+        function hidePopup() {
+            popupOverlay.classList.remove('show');
+        }
+
+        // 이벤트 리스너 등록
+        artistGroups.forEach(group => {
+            const artistId = parseInt(group.dataset.artistId);
+            group.addEventListener('click', () => {
+                const artist = artists[artistId];
+                if (artist) {
+                    showPopup(artist);
+                }
+            });
+        });
+
+        // 팝업 닫기 이벤트
+        popupClose.addEventListener('click', hidePopup);
+        popupOverlay.addEventListener('click', (e) => {
+            if (e.target === popupOverlay) {
+                hidePopup();
+            }
+        });
+
+        // ESC 키로 팝업 닫기
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') {
+                hidePopup();
+            }
+        });
+    </script>
+</body>
+</html>

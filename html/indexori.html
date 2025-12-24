@@ -1,0 +1,415 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta property="og:title" content="한 컷, 한 숨">
+  <meta property="og:type" content="website">
+<meta property="og:image" content="https://d2w9rnfcy7mm78.cloudfront.net/38210967/original_a1f72f8e03d978150ac565ea0bf35812.jpg">
+
+<meta property="og:description" content="한 숨 들이켰을 뿐인데, 풍경이 들어왔다">
+<meta property="og:url" content="https://np-art.site/">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playwrite+VN+Guides&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Bitcount+Grid+Double:wght@100..900&display=swap" rel="stylesheet">
+
+  <title>한 컷, 한 숨</title>
+  <style>
+    html, body {
+      margin: 0;
+      padding: 0;
+      background: rgb(255, 255, 255);
+      font-family: 'Pretendard-Regular', sans-serif;
+      overflow-x: hidden;
+      line-height: 30px;
+    }
+@font-face {
+      font-family: 'Pretendard-Regular';
+      src: url('https://fastly.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-Regular.woff') format('woff');
+      font-weight: 400;
+      font-style: normal;
+    }
+
+    /* 모바일 중심 고정 프레임 */
+    .zoom-wrapper {
+  position: fixed;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 430px;
+  height: 100vh;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column; /* 위-아래로 배치 */
+  align-items: center;
+  z-index: 2;
+  background: rgb(255, 255, 255);
+}
+
+.zoom-text {
+  font-size: 18px;
+    font-family: "Playwrite VN Guides", cursive;
+    
+  font-weight: bold;
+  color: black;
+  margin-bottom: 20px;
+  padding: 8px 16px;
+  border-radius: 8px;
+  pointer-events: none;
+  z-index: 3;
+  transition: opacity 0.4s ease;
+  opacity: 1; /* 기본값 */
+}
+
+
+.zoom-image {
+  width: 100%;
+  height: auto;
+  transform: scale(1);
+   height: 100%;
+  object-fit: cover; /* 중요! */
+  transform-origin: 45.9% 57.4%;
+  transition: transform 0.2s ease;
+  pointer-events: none;
+  
+
+}
+
+.lang { display: none; }
+
+.lang.active { display: block; }
+
+.lang-button {
+background-color: rgba(255, 255, 255, 0.1);
+  border: 1px solid black;
+  color: black;
+  padding: 6px 12px;
+  border-radius: 20px;
+  cursor: pointer;
+  font-size: 0.9rem;
+  transition: all 0.3s ease;
+}
+
+/* 호버 시 */
+.lang-button:hover {
+  background-color: black;
+  color: white;
+}
+
+    /* 확대된 후 고정된 배경 */
+    .background-fixed {
+      position: fixed;
+      top: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 430px;
+      height: 200vh;
+      background-repeat: no-repeat;
+      background-size: cover;
+      background-position: center;
+      opacity: 0;
+      z-index: 1;
+      transition: opacity 0.6s ease;
+    }
+
+    /* 본문 */
+    .content {
+      position: relative;
+      z-index: 3;
+      background:linear-gradient(to bottom, #97be68,#fdfff5, #fdfff5) ;
+      color: black  ;
+      width: 100%;
+      max-width: 430px;
+      margin: 200vh auto 0;
+      padding: 600px 20px 40px 20px;
+      box-sizing: border-box;
+    }
+
+    .button-wrapper {
+  text-align: center;
+  margin-top: 40px;
+}
+
+/* 기본 버튼 스타일 */
+.cloud-button {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  padding: 8px 22px;
+  font-size: 18px;
+  font-weight: 500;
+  font-family: 'HSBombaram21-Regular', sans-serif;
+  text-decoration: none;
+  color: #333;
+  background-color: #fffcf9;
+  border: ridge 1px #333;
+  border-radius: 50px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+.title.shimmer-text{
+   color: transparent;
+  background-image: linear-gradient(135deg,
+    #d3ebd7, #94c29b, #a4c9aa, #d9ebde);
+    text-shadow:  0 2px 4px rgba(80, 114, 73, 0.3);
+  background-size: 200% auto;
+  background-clip: text;
+  -webkit-background-clip: text;
+  animation: shimmer 2.5s linear infinite;
+}
+/* shimmer 텍스트 효과 */
+.cloud-button.shimmer-text {
+  color: transparent;
+  background-image: linear-gradient(90deg, #333, #999, #333);
+  background-size: 200% auto;
+  background-clip: text;
+  -webkit-background-clip: text;
+  animation: shimmer 2s linear infinite;
+}
+
+/* hover 시 배경 레인보우 흐림 효과 */
+.cloud-button:hover {
+  background-image: linear-gradient(
+    90deg,
+    rgba(255, 0, 0, 0.4),
+    rgba(255, 165, 0, 0.4),
+    rgba(255, 255, 0, 0.4),
+    rgba(0, 128, 0, 0.4),
+    rgba(0, 0, 255, 0.4),
+    rgba(75, 0, 130, 0.4),
+    rgba(238, 130, 238, 0.4)
+  );
+  background-size: 400% 100%;
+  animation: rainbow 3.5s linear infinite;
+}
+
+/* shimmer 키프레임: 텍스트 광택 */
+@keyframes shimmer {
+  0% {
+    background-position: -200% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
+}
+
+/* rainbow 키프레임: hover 시 무지개 배경 흐름 */
+@keyframes rainbow {
+  0% {
+    background-position: 0% 0%;
+  }
+  100% {
+    background-position: 100% 0%;
+  }
+}
+
+@font-face {
+    font-family: 'HakgyoansimByeolbichhaneulTTF-B';
+    src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/2408-5@1.0/HakgyoansimByeolbichhaneulTTF-B.woff2') format('woff2');
+    font-weight: 700;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'HSBombaram21-Regular';
+    src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_2302@1.0/HSBombaram21-Regular.woff2') format('woff2');
+    font-weight: normal;
+    font-style: normal;
+}
+
+.page-exit {
+  animation: slideUp 0.7s forwards;
+}
+
+@keyframes slideUp {
+  0% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(-100%);
+    opacity: 0;
+  }
+}
+
+  </style>
+</head>
+<body>
+
+  <!-- 확대 이미지 (모바일 프레임 안) -->
+
+<div class="zoom-wrapper" id="zoomWrapper">
+  <img src="posterbig.png" alt="Zoom Image" class="zoom-image" id="zoomImage">
+</div>
+
+
+  <!-- 고정 배경 (모바일 중앙 비율) -->
+  <div class="background-fixed" id="bgFixed"></div>
+
+  <!-- 본문 -->
+  <div class="content">
+     <p class="title shimmer-text" style="font-family: 'HSBombaram21-Regular', sans-serif; font-size: 35px; margin-bottom: 400px; text-align: center; line-height: 70px;">
+      <span style="font-style: italic;">This Abled</span><br><br>TEAM NP<br>X<br>CONVEY.G
+    <!--<br>한<br><br>컷<br><br>,<br><br>한<br><br>숨
+  </p> font-size: 50px-->
+    <h1 style="font-family: 'HSBombaram21-Regular', sans-serif; font-weight: 200;">Opening Note
+    </h1>
+
+<div>
+  <button class="lang-button" onclick="switchLanguage('ko')">KOR</button>
+  <button class="lang-button" onclick="switchLanguage('en')">ENG</button>
+</div>
+  
+    
+    <span class="lang ko active">
+
+<br>
+<div class="bold-line" style="font-weight: bold;">우리는 언제 몰입하게 될까?</div>
+감각이 하나의 장면에 머물고, 마음이 조용히 가라앉는 순간 — 몰입은 일상 속에서도 조용히 시작된다.
+<br><br>
+이번 전시는 ‘몰입’이라는 <span class="bold-line" style="font-weight: bold;">감각적 경험</span>에 주목한다.
+특히 발달장애 예술가들이 보여주는 몰입의 방식은 그들만의 고유한 리듬과 감각을 통해 세상을 바라보게 한다.
+<br><br>
+<span class="bold-line" style="font-weight: bold;">강선아, 이다래, 박찬흠, 박혜신</span> —  네 명의 작가는 각자의 방식으로 외부 자극에 반응하며, 자연과의 관계 속에서 내면의 풍경을 그려낸다.
+그들에게 그림은 치유이자 언어이며, 몰입은 세상과 소통하는 가장 솔직한 방식이다.
+<br><br>
+우리는 그 몰입을 시각을 넘어 또 하나의 감각으로 확장하고자 한다. 시각과 후각이 함께 열릴 때, 관람객은 한 장면에 더욱 깊이 머물 수 있다.
+<br><br>
+이를 위해 향기 브랜드 <span class="bold-line" style="font-weight: bold;">'CONVEY.G(컨베이지)'</span>와 협업하여, 각 풍경에 어울리는 향을 더하며 새로운 몰입의 경험을 선사한다.
+<br><br>
+CONVEY.G는 '어떻게 하면 더욱 많은 사람들이 예술을 즐기고 누리면서, 예술가들의 경제적 문제를 해결할 수 있을까'를 고민하며, 예술가에 의해 만들어진 브랜드이다. 예술가들의 자립과 사회적 약자의 자립을 위해 2016년 여름에 시작된 컨베이지는 다양한 예술적 경험과 배움을 토대로 브랜드만의 고유한
+향기를 전하고 있다.
+<br><br>
+그들의 철학인 '예술로 지친 사람들의 마음을 위로하고, 삶에 좋은 영감을 전달한다'는 이번 전시의 의도와도 깊이 닿아 있다.
+<br><br>
+<span class="bold-line" style="font-weight: bold;">'한 컷, 한 숨'</span> ㅡ 그 짧고 고요한 순간에, 한 장의 그림과 한 번의 숨결이 여러분의 감각에 천천히 스며들기를 바란다.
+</span>
+  <span class="lang en">
+    <br>
+   <div class="bold-line" style="font-weight: bold;">When do we truly become immersed?</div>
+This exhibition explores immersion as a sensory
+experience — one that begins gently, even within every-
+day life.
+<br><br>
+The four participants<span class="bold-line" style="font-weight: bold;"> - Sunah Kang, Darae Lee,
+Chanheum Park, and Hyeshin Park —</span> are creators
+with developmental disabilities. Their works reflect
+unique rhythms and sensitivities, shaped by their
+responses to the world and their connection with
+nature. Through their immersive practices, we are
+invited to see the world through their eyes. For them,
+painting is both healing and a form of communication
+— a sincere way to engage with the world.
+<br><br>
+We extend this experience beyond sight by introducing
+scent. When sight and scent are experienced together,
+a fuller, slower moment of presence becomes possible.
+<br><br>
+A signature piece by each artist is paired with a
+complementary fragrance, created in collaboration with
+<span class="bold-line" style="font-weight: bold;">CONVEY.G</span> — an artist-founded brand that bridges
+scent and art, and empowers artists’ independence.
+Their belief — in comforting and inspiring through art —
+echoes the heart of this exhibition.
+<br><br>
+We hope this quiet moment <span class="bold-line" style="font-weight: bold;">— A Moment, A Breath —</span>
+will gently linger with you, leaving the subtle whispers
+of landscapes and scents that stay in your heart.
+  </span>
+
+      <!-- 버튼 추가 -->
+<div class="button-wrapper">
+<a id="languageLink" class="cloud-button shimmer-text"> ⇨ Enter</a>
+
+</div>
+
+
+</div>
+
+  
+
+  
+  <script>
+ const zoomImage = document.getElementById('zoomImage');
+const zoomWrapper = document.getElementById('zoomWrapper');
+const bgFixed = document.getElementById('bgFixed');
+const zoomText = document.getElementById('zoomText');
+
+window.addEventListener('scroll', () => {
+  const scrollY = window.scrollY;
+
+const maxScrollForScale = 3800; // 최대 확대를 적용할 스크롤 범위 (원하는 만큼 늘리기)
+  const maxScale = 300;             // 최대 확대 배율 (원하는 만큼 조절)
+
+  let effectiveScroll = Math.min(scrollY, maxScrollForScale);
+  let scale = 1 + (effectiveScroll / maxScrollForScale) * (maxScale - 1);
+
+  zoomImage.style.transform = `scale(${scale})`;
+
+
+  // 텍스트 페이드아웃 (0~100 사이 서서히 사라짐)
+  let opacity = 1 - scrollY / 100;
+  if (opacity < 0) opacity = 0;
+  zoomText.style.opacity = opacity;
+
+  // 배경 전환 & zoomWrapper opacity 조절
+  if (scrollY >= 1000) {
+    // zoomWrapper를 숨기지 말고 투명도만 낮춤 or 유지
+    zoomWrapper.style.opacity = 1; // 1로 유지하면 이미지 계속 보임
+    // 또는 서서히 투명도 줄이려면 아래처럼 작성 가능
+    // zoomWrapper.style.opacity = 1 - (scrollY - 1000) / 200;
+
+    bgFixed.style.backgroundImage = `url('NP.png')`;
+    bgFixed.style.opacity = 1;
+  } else {
+    zoomWrapper.style.opacity = 1;
+    bgFixed.style.opacity = 0;
+  }
+});
+
+ function switchLanguage(lang) {
+  document.querySelectorAll('.lang').forEach(el => {
+    el.classList.remove('active');
+    if (el.classList.contains(lang)) el.classList.add('active');
+  });
+}
+
+  // 언어 설정
+  function switchLanguage(lang) {
+    document.querySelectorAll('.lang').forEach(el => {
+      el.classList.remove('active');
+      if (el.classList.contains(lang)) el.classList.add('active');
+    });
+
+    // 현재 언어를 버튼 링크에 반영
+    const link = document.getElementById("languageLink");
+    link.href = `home3.html?lang=${lang}`;
+  }
+
+  // 초기 로딩 시 현재 언어 파악 (ko를 기본값으로)
+  window.addEventListener('DOMContentLoaded', () => {
+    const currentLang = document.querySelector('.lang.active')?.classList[1] || 'ko';
+    const link = document.getElementById("languageLink");
+    link.href = `home3.html?lang=${currentLang}`;
+  });
+
+  const link = document.getElementById('languageLink');
+
+  link.addEventListener('click', (e) => {
+    e.preventDefault(); // 기본 링크 이동 막기
+
+    // body에 클래스 추가 → 애니메이션 실행
+    document.body.classList.add('page-exit');
+
+    // 애니메이션 끝난 뒤 페이지 이동
+    setTimeout(() => {
+      window.location.href = 'home3.html';
+    }, 700); // 위에서 설정한 애니메이션 시간과 일치
+  });
+  
+</script>
+
+</body>
+</html>

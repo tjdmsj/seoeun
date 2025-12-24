@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>워크숍</title>
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+@font-face {
+    font-family: 'SF_IceLemon';
+    src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_2106@1.1/SF_IceLemon.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+    body {
+      margin: 0;
+      font-family: sans-serif;
+background-color: rgba(255, 255, 255, 0.65);
+      display: flex;
+      justify-content: center;
+      
+      
+      
+    }
+.loader {
+  position: fixed;
+  top: 60px; /* 헤더 높이 아래로 */
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100%;
+  max-width: 430px;
+  height: calc(100vh - 60px);
+background-color: rgb(236, 245, 242);
+    display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 999; /* iframe 위에 표시 */
+  font-family: 'SF_IceLemon', sans-serif;
+  font-size: 20px;
+  color: rgb(104, 104, 104);
+}
+
+    .wrapper {
+      width: 100%;
+      max-width: 430px;
+background-color: rgb(236, 245, 242);
+      height: 100dvh;
+        min-height: 100vh; /* fallback */
+
+      padding-top: 60px;
+    }
+
+    .header {
+      position: fixed;
+      top: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 100%;
+      max-width: 430px;
+background-color: rgba(236, 245, 242);
+      display: flex;
+      justify-content: flex-start;
+      align-items: center;
+      padding: 10px;
+      z-index: 1000;
+      gap: 6px;
+      flex-wrap: wrap;
+    }
+
+    .header button {
+      padding: 8px 8px;
+      border: #1f4f3f dashed 2PX;
+      border-radius: 20px;
+      background: transparent;
+      cursor: pointer;
+      white-space: nowrap;
+      font-size: 20px;
+      color: #1f4f3f;
+      font-family: 'SF_IceLemon',sans-serif;
+
+    }
+
+    .header button.active {
+  background-color: #1f4f3f;
+  color: white;
+  font-weight: bold;
+}
+
+.header button:hover{
+  background-color: #1f4f3f;
+  color: white;
+    font-weight: bold;
+
+}
+    .invisible {
+      visibility: hidden;
+    }
+
+    iframe {
+      width: 100%;
+      height: 100%;
+      border: none;
+      
+    }
+
+    @media (max-width: 430px) {
+      iframe {
+        height: 100%;
+      }
+    }
+
+     .loader span {
+  display: inline-block;
+}
+
+.loader.animate span {
+  animation: wave 1.3s infinite ease-in-out;
+}
+
+.loader.animate span:nth-child(1) { animation-delay: 0s; }
+.loader.animate span:nth-child(2) { animation-delay: 0.1s; }
+.loader.animate span:nth-child(3) { animation-delay: 0.2s; }
+.loader.animate span:nth-child(4) { animation-delay: 0.3s; }
+.loader.animate span:nth-child(5) { animation-delay: 0.4s; }
+.loader.animate span:nth-child(6) { animation-delay: 0.5s; }
+.loader.animate span:nth-child(7) { animation-delay: 0.6s; }
+.loader.animate span:nth-child(8) { animation-delay: 0.7s; }
+
+@keyframes wave {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-6px) rotate(-5deg);
+  }
+}
+  </style>
+</head>
+<body>
+
+<div class="wrapper">
+  <div class="loader" id="loader">  <span>로</span><span>딩</span><span> </span><span>중</span><span>입</span><span>니</span><span>다</span><span>...</span>
+</div>
+
+  <div class="header">
+  <button id="home" onclick="location.href='../home.html'" style="font-size: large;">⌂</button>
+  <button class="active" onclick="loadIframe('https://script.google.com/macros/s/AKfycbxl9tIweJ0xXY6c1Gkn-aTBkFkKQTx92TJ-1LUq9lnd2GVbYXabtw0mAP5RsF-09XDP/exec', this, '로딩 중입니다...', true)">감각 아카이빙</button>
+  <button onclick="loadIframe('index2.html', this)">워크숍 참여하기</button>
+</div>
+  <iframe id="contentFrame" src="https://script.google.com/macros/s/AKfycbxl9tIweJ0xXY6c1Gkn-aTBkFkKQTx92TJ-1LUq9lnd2GVbYXabtw0mAP5RsF-09XDP/exec"></iframe>
+</div>
+
+<script>
+const loader = document.getElementById('loader');
+const iframe = document.getElementById('contentFrame');
+
+// 현재 로딩 중인 iframe에 딜레이 적용 여부 저장
+let delayAfterLoad = false;
+
+function setLoadingText(text) {
+  const spans = text.split('').map(ch => `<span>${ch}</span>`).join('');
+  loader.innerHTML = spans;
+
+  loader.classList.remove('animate');
+  void loader.offsetWidth; // 리플로우 강제 유도
+  loader.classList.add('animate');
+}
+
+function setActiveButton(target) {
+  document.querySelectorAll('.header button').forEach(btn => btn.classList.remove('active'));
+  if (target) target.classList.add('active');
+}
+
+function loadIframe(url, button = null, loadingText = "로딩 중입니다...", delay = false) {
+  setLoadingText(loadingText);
+  loader.style.display = 'flex';
+  iframe.src = url;
+  delayAfterLoad = delay; // 현재 로딩은 딜레이가 필요한지 기록
+
+  if (button) setActiveButton(button);
+}
+
+// iframe 하나의 공통 onload 핸들러
+iframe.onload = () => {
+  const delayMs = delayAfterLoad ? 2000 : 0;
+  setTimeout(() => {
+    loader.style.display = 'none';
+  }, delayMs);
+};
+
+// 처음 페이지 로드시 로딩 보여주기
+document.addEventListener("DOMContentLoaded", () => {
+  const defaultURL = 'https://script.google.com/macros/s/AKfycbxl9tIweJ0xXY6c1Gkn-aTBkFkKQTx92TJ-1LUq9lnd2GVbYXabtw0mAP5RsF-09XDP/exec';
+  const defaultButton = document.querySelector('button:nth-child(2)'); // '감각 아카이빙' 버튼
+  
+  loadIframe(defaultURL, defaultButton, '로딩 중입니다...', true);
+});
+</script>
+
+</body>
+</html>

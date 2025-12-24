@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>감각 기반 전시</title>
+  <style>
+    :root {
+      --bg-color: #F2F2F7;
+      --text-color: #111;
+      --card-bg: #F2F2F7;
+      --border-color: #C6C6C8;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    }
+
+    body {
+      background: var(--bg-color);
+      color: var(--text-color);
+      height: 100dvh;
+      display: grid;
+      grid-template-rows: auto auto auto auto auto;
+      overflow: hidden;
+    }
+
+    /* 헤더 */
+    .main-header {
+      position: relative;
+      padding: 12px 20px;
+      background: var(--card-bg);
+      border-bottom: 1px solid var(--border-color);
+      text-align: center;
+    }
+
+    .back-button, .info-button {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      background: transparent;
+      border: none;
+      font-size: 1.2rem;
+      cursor: pointer;
+      color: var(--text-color);
+    }
+
+    .back-button {
+      left: 20px;
+      color: #077dfb;
+    }
+
+    .info-button {
+      right: 20px;
+    }
+
+    .header-texts {
+      display: inline-block;
+    }
+
+    .header-texts .timestamp {
+      font-size: 0.85rem;
+      color: #888;
+      margin-bottom: 2px;
+      padding-top: 4px;
+    }
+
+    .header-texts .image-label {
+      font-size: 0.95rem;
+      color: #555;
+      font-weight: 600;
+    }
+
+    /* 팝업 */
+    .info-circle {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  background-color: #077dfb;
+  color: white;
+  font-size: 14px;
+  font-weight: bold;
+  font-family: sans-serif;
+  line-height: 1;
+   border: 1px solid var(--border-color);  
+}
+
+
+    .popup-overlay {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      backdrop-filter: blur(10px);
+      background-color: rgba(0, 0, 0, 0.3);
+      display: none;
+      justify-content: center;
+      align-items: center;
+      z-index: 9999;
+    }
+
+    .popup-box {
+      background: #ffffffcc;
+      border-radius: 14px;
+      padding: 20px;
+      max-width: 300px;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+      text-align: center;
+      font-size: 0.95rem;
+      color: #333;
+    }
+
+    .popup-box button {
+      margin-top: 16px;
+      padding: 8px 16px;
+      background: #077dfb;
+      border: none;
+      border-radius: 10px;
+      color: white;
+      font-size: 0.9rem;
+      cursor: pointer;
+       border: 1px solid var(--border-color);
+    }
+
+    /* 이미지 */
+    .image-wrapper {
+      width: 100%;
+      padding: 20px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      max-height: 70vh;
+      overflow: hidden;
+    }
+
+    .map-image {
+  height: auto;
+  width: auto;
+  max-height: 100%;       /* wrapper 안에서만 축소 */
+  max-width: 90vw;        /* 가로도 디바이스 폭 넘지 않게 */
+  object-fit: contain;
+  display: block;
+  border-radius: 6px;
+}
+
+
+    /* 서브 헤더 */
+    .sub-header-wrapper {
+      padding: 5px 5px 0 15px;
+      background: var(--bg-color);
+    }
+
+    .header-title {
+      font-weight: bold;
+      font-size: 1.2rem;
+      padding: 5px;
+    }
+
+    /* 그리드 리스트 */
+    .grid-list {
+      margin: 16px;
+      margin-top: 6PX;
+      background: #E5E5EA;
+      border-radius: 14px;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.08);
+      overflow: hidden;
+
+    }
+
+    .grid-item {
+      display: flex;
+      align-items: center;
+      padding: 14px 16px;
+      font-size: 0.95rem;
+      border-bottom: 1px solid var(--border-color);
+    }
+.grid-item a{
+  text-decoration: none;
+  color: black;
+  font-size: 15px;
+
+}
+    .grid-item:last-child {
+      border-bottom: none;
+    }
+
+    .grid-item span.icon {
+      margin-right: 12px;
+      font-size: 1.1rem;
+    }
+
+    /* 푸터 */
+    footer {
+      background: var(--card-bg);
+      border-top: 1px solid var(--border-color);
+      display: flex;
+      justify-content:space-between;
+      align-items: center;
+      padding: 10px 16px;
+      font-size: 0.8rem;
+      color: #077dfb;
+    }
+
+
+
+    .footer-right {
+      display: flex;
+      gap: 8px;
+    }
+
+    button {
+      background: transparent;
+      border: 1px solid var(--border-color);
+      border-radius: 6px;
+      padding: 6px 10px;
+      font-size: 0.75rem;
+      color: white;
+      background-color: #077dfb;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background: rgba(0,0,0,0.05);
+    }
+
+    @media screen and (max-width: 430px) {
+      .grid-item {
+        font-size: 0.85rem;
+      }
+      button {
+        font-size: 0.7rem;
+        padding: 5px 8px;
+      }
+      footer {
+        flex-direction: row;
+        align-items: flex-start;
+      }
+
+    }
+  </style>
+</head>
+<body>
+
+  <!-- 헤더 -->
+  <header class="main-header">
+    <button class="back-button" onclick="history.back()">↰</button>
+    <div class="header-texts">
+      <div class="image-label" id="img-label">IMG_0723 – 감각 기반 전시 한컷한숨</div>
+      <div class="timestamp" id="timestamp">📆 ...</div>
+    </div>
+    <button class="info-button" onclick="openPopup()">
+  <span class="info-circle">i</span>
+</button>
+  </header>
+
+  <!-- 팝업 -->
+  <div class="popup-overlay" id="popup">
+    <div class="popup-box">
+      <p>이 전시는 관람자의 감각 몰입 경험을 중심으로 구성되어 있습니다.</p>
+      <button onclick="closePopup()">OK</button>
+    </div>
+  </div>
+
+  <!-- 서브 헤더 -->
+  <div class="sub-header-wrapper">
+    <div id="header-title" class="header-title">몰입 유형 선택하기 ></div>
+  </div>
+
+  <!-- 그리드 -->
+  <div class="grid-list">
+    <div class="grid-item">
+      <span class="icon">✦</span>
+      <a href="artist/1.html"><span id="menu1">◯ 컷 , ◯ 숨 머무르기</span></a> 
+    </div>
+    <div class="grid-item">
+      <span class="icon">✧</span>
+      <a href="workshop/index.html"><span id="menu2">함께 감각 나누기</span></a>
+    </div>
+    <div class="grid-item">
+      <span class="icon">✦</span>
+      <span id="menu3">프로젝트 소개</span>
+    </div>
+  </div>
+
+  <!-- 푸터 -->
+  <footer>
+    <div class="footer-left">관람객 전시 가이드 웹</div>
+    <div class="footer-right">
+      <button onclick="switchLang('ko')">KOR</button>
+      <button onclick="switchLang('en')">ENG</button>
+    </div>
+  </footer>
+
+  <!-- 스크립트 -->
+  <script>
+    function updateTimestamp() {
+      const now = new Date();
+      const days = ["일", "월", "화", "수", "목", "금", "토"];
+      const year = now.getFullYear();
+      const month = now.getMonth() + 1;
+      const date = now.getDate();
+      const day = days[now.getDay()];
+      const hourRaw = now.getHours();
+      const hour = hourRaw % 12 || 12;
+      const minute = now.getMinutes().toString().padStart(2, "0");
+      const ampm = hourRaw < 12 ? "오전" : "오후";
+      const timeStr = `${year}년 ${month}월 ${date}일 ${day}요일 ${ampm} ${hour}:${minute}`;
+      document.getElementById("timestamp").textContent = timeStr;
+    }
+
+    updateTimestamp();
+
+    const translations = {
+      ko: {
+        header: "몰입 유형 선택하기 >",
+        menu1: "◯ 컷 , ◯ 숨 머무르기",
+        menu2: "함께 감각 나누기",
+        menu3: "프로젝트 소개",
+        imgLabel: "IMG_0723 – 감각 기반 전시 한컷한숨"
+      },
+      en: {
+        header: "Choose Immersion Type >",
+        menu1: "◯ Moment , ◯ Breath: Pause",
+        menu2: "Sharing Senses",
+        menu3: "Project Overview",
+        imgLabel: "IMG_0723 – the sensory-based exhibition"
+      }
+    };
+
+    function switchLang(lang) {
+      const t = translations[lang];
+      document.getElementById("header-title").textContent = t.header;
+      document.getElementById("menu1").textContent = t.menu1;
+      document.getElementById("menu2").textContent = t.menu2;
+      document.getElementById("menu3").textContent = t.menu3;
+      document.getElementById("img-label").textContent = t.imgLabel;
+      updateTimestamp();
+    }
+
+    function openPopup() {
+      document.getElementById("popup").style.display = "flex";
+    }
+
+    function closePopup() {
+      document.getElementById("popup").style.display = "none";
+    }
+  </script>
+
+</body>
+</html>

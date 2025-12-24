@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>about+Gallery</title>
+  <style>
+    body {
+      background: white;
+      margin: 0;
+      font-family: sans-serif;
+      overflow-x: hidden;
+      overflow: auto;
+      -ms-overflow-style: none;  /* IE, Edge */
+      scrollbar-width: none;     /* Firefox */
+       padding-bottom: 150px; 
+    }
+
+    body::-webkit-scrollbar {
+      display: none;             /* Chrome, Safari */
+    }
+
+    .header {
+      text-align: center;
+      padding: 30px 20px 10px;
+    }
+
+    .header h1 {
+      font-size: 32px;
+      color: #7a9e87 ;
+    }
+
+    .header .names {
+      font-size: 14px;
+      color: #444;
+      max-width: 700px;
+      margin: 0 auto 10px;
+      line-height: 1.7;
+      padding: 0 15px 0 15px;
+      text-align: justify;
+    }
+
+    .header .filter {
+      font-size: 13px;
+      margin-top: 30px;
+      color: #555;
+    }
+
+    .side-text {
+      position: fixed;
+      top: 50%;
+      transform: translateY(-50%);
+      writing-mode: vertical-rl;
+      text-orientation: mixed;
+      font-size: 12px;
+      color: #678672;
+      opacity: 0.8;
+      z-index: 2;
+    }
+
+    .side-text.left {
+      left: 5px;
+      transform: translateY(-50%) rotate(-180deg);
+    }
+
+    .side-text.right {
+      right: 5px;
+    }
+
+    /* 슬라이드 스타일 */
+    .dots {
+      display: flex;
+      justify-content: center;
+      margin-bottom: 20px;
+      gap: 8px;
+    }
+
+    .dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: #ccc;
+    }
+
+    .dot.active {
+      background: #7a9e87;
+    }
+
+    .slider-container {
+      width: 90%;
+      height: 350px;
+      max-height: 100%;
+      overflow: hidden;
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transform: translateX(-50%);
+      left: 50%
+    }
+
+    .slider {
+      position: relative;
+      align-items: center;
+      justify-content: center;
+      width: 100%;
+      height: 100%;
+    }
+
+    .slide {
+      width: 100%;
+      height: 100%;
+      position: absolute;
+      top: 0;
+      left: 0;
+      opacity: 0;
+      transition: opacity 0.5s ease;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .slide.active {
+      opacity: 1;
+      z-index: 2;
+    }
+
+    .slide img {
+      max-height: 80%;
+      max-width: 90%;
+      object-fit: contain;
+      display: block;
+    }
+
+    .caption {
+      margin-top: 10px;
+      font-size: 12px;
+      text-align: center;
+      color: #333;
+      padding: 0 10px;
+    }
+  </style>
+</head>
+<body>
+  <div class="side-text left">← SunAh Kang ←</div>
+  <div class="side-text right">→ A Moment , A Breath →</div>
+
+  <div class="header">
+    <h1>강선아</h1>
+    <div class="names">
+      강선아 작가는 어린 시절, 말보다 그림으로 먼저 마음을 전했다.
+감정을 조심스럽게 표현하던 시간 속에서, 그림은 자신만의 언어가
+되어 세상과 소통하는 창이 되었다.
+
+ 어머니의 다정한 지지 아래 싹튼 색채 감각은 작가의 일상과 기억
+위에 자연스럽게 스며들었다. 완두콩, 청포도, 아오리사과와 같은
+연두빛 사물에 머무는 시선은 작가의 애정 어린 감각을 고스란히
+드러낸다.
+
+ 연두는 작가의 마음이 가장 편안히 머무는 색이다. 회화적이면서
+때로는 팝아트적인 생동감이 화면 위에서 작은 기쁨으로 반짝인다.
+
+“멋지게 그려서 사람들에게 선물하고 싶어요.”
+
+ 그 바람을 품고, 그녀는 좋아하는 것을 천천히, 꾸준히 그려간다.
+삶의 한 장면을 정성스레 그려내는 그 마음이 오늘도 녹색의 온기로
+전해진다.
+    </div>
+    <div class="filter"><strong>#그림언어 #연두빛시선 #선물하는기쁨</strong></div>
+  </div>
+
+  <!-- 슬라이드 삽입 시작 -->
+  <div class="slider-container">
+    <div class="slider" id="slider">
+      <div class="slide active">
+        <img src="ksamain.jpg" alt="">
+        <div class="caption">《나의 집》,
+2023, Acrylicpen on canvas, 53X72.7cm</div>
+      </div>
+      <div class="slide">
+        <img src="ksa1.jpg" alt="">
+        <div class="caption">《황새》, 2020, Acrylicpen on canvas, 91x72.7cm</div>
+      </div>
+      <div class="slide">
+        <img src="ksa2.jpg" alt="">
+        <div class="caption">《석양》, 2021 
+, Acrylic on canvas, 72.7X91cm
+</div>
+      </div>
+      <div class="slide">
+        <img src="ksa3.jpg" alt="">
+        <div class="caption">《가을 산책》, 2024
+, Acrylic on canvas, 72.7x90.9cm</div>
+      </div>
+      <div class="slide">
+        <img src="ksa4.jpg" alt="">
+        <div class="caption">《여름 산책》, 2024, Acrylic on canvas, 72.7X90.9cm
+</div>
+      </div>
+      <div class="slide">
+        <img src="230133535.jpg" alt="">
+        <div class="caption"></div>
+      </div>
+      
+      <div class="slide">
+        <img src="215637692.jpg" alt="">
+        <div class="caption"></div>
+      </div>
+
+      <div class="slide">
+        <img src="233659563.jpg" alt="">
+        <div class="caption"></div>
+      </div>
+    </div>
+  </div>
+    <div class="dots" id="dots"></div>
+
+  <!-- 슬라이드 삽입 끝 -->
+
+     <script src="about.js"></script>
+
+  
+</body>
+</html>

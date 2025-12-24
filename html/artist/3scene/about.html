@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>about+Gallery</title>
+  <style>
+    body {
+      background: white;
+      margin: 0;
+      font-family: sans-serif;
+      overflow-x: hidden;
+      overflow: auto;
+      -ms-overflow-style: none;  /* IE, Edge */
+      scrollbar-width: none;     /* Firefox */
+             padding-bottom: 150px; 
+
+    }
+
+    body::-webkit-scrollbar {
+      display: none;             /* Chrome, Safari */
+    }
+
+    .header {
+      text-align: center;
+      padding: 30px 20px 10px;
+    }
+
+    .header h1 {
+      font-size: 32px;
+      color: #a98467 ;
+    }
+
+    .header .names {
+      font-size: 14px;
+      color: #444;
+      max-width: 700px;
+      margin: 0 auto 10px;
+      line-height: 1.7;
+      padding: 0 15px 0 15px;
+      text-align: justify;
+    }
+
+    .header .filter {
+      font-size: 13px;
+      margin-top: 30px;
+      color: #555;
+    }
+
+    .side-text {
+      position: fixed;
+      top: 50%;
+      transform: translateY(-50%);
+      writing-mode: vertical-rl;
+      text-orientation: mixed;
+      font-size: 12px;
+      color: #82654f;
+      opacity: 0.8;
+      z-index: 2;
+    }
+
+    .side-text.left {
+      left: 5px;
+      transform: translateY(-50%) rotate(-180deg);
+    }
+
+    .side-text.right {
+      right: 5px;
+    }
+
+    /* 슬라이드 스타일 */
+    .dots {
+      display: flex;
+      justify-content: center;
+      margin-bottom: 15px;
+      gap: 8px;
+    }
+
+    .dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: #ccc;
+    }
+
+    .dot.active {
+      background: #a98467;
+    }
+
+    .slider-container {
+      width: 90%;
+      height: 350px;
+      max-height: 100%;
+      overflow: hidden;
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transform: translateX(-50%);
+      left: 50%
+    }
+
+    .slider {
+      position: relative;
+      align-items: center;
+      justify-content: center;
+      width: 100%;
+      height: 100%;
+    }
+
+    .slide {
+      width: 100%;
+      height: 100%;
+      position: absolute;
+      top: 0;
+      left: 0;
+      opacity: 0;
+      transition: opacity 0.5s ease;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .slide.active {
+      opacity: 1;
+      z-index: 2;
+    }
+
+    .slide img {
+      max-height: 80%;
+      max-width: 90%;
+      object-fit: contain;
+      display: block;
+    }
+
+    .caption {
+      margin-top: 10px;
+      font-size: 12px;
+      text-align: center;
+      color: #333;
+      padding: 0 10px;
+    }
+  </style>
+</head>
+<body>
+  <div class="side-text left">← HyeShin Park ←</div>
+  <div class="side-text right">→ A Moment , A Breath →</div>
+
+  <div class="header">
+    <h1>박혜신</h1>
+    <div class="names">
+      박혜신 작가의 그림에는 자연과 함께한 어린 시절의 기억이 조용히 스며 있다. 쥐불놀이, 흙냄새, 오디를 따던 손끝—작은 장면들이 따뜻한 색과 감성으로 되살아난다. 작가는 날마다 달라지는 감정과 인상에 따라 그림을 그린다. 말로는 다 전하지 못한 마음을, 색과 선으로 조심스레 풀어낸다. “사람들이 내 그림을 보고 행복해졌으면 좋겠다”— 그 바람처럼, 박혜신 작가의 작업은 보는 이에게 작은 위로와 기쁨을 건넨다. 그의 풍경은 일상의 한 장면을 다정하게 바라보게 하고, 잠시 멈춰 선 마음에 잔잔한 숨을 불어넣는다. 자연을 향한 작가의 시선과 감각이 담긴 이 장면들은, 기억 속 고요한 풍경처럼 우리 곁에 머문다.
+    </div>
+    <div class="filter"><strong># 치유작가 # 그림으로말해요 # 기억의 풍경</strong></div>
+  </div>
+  <!-- 슬라이드 삽입 시작 -->
+  <div class="slider-container">
+    <div class="slider" id="slider">
+      <div class="slide active">
+        <img src="phsmain.jpg" alt="">
+        <div class="caption">《양천공원-비체나라》, oil on canvas, 72.7x60.6cm</div>
+      </div>
+      <div class="slide">
+        <img src="phs1.jpg" alt="">
+        <div class="caption">《제주도》, 2011, oil on canvas, 91.0x116.8cm</div>
+      </div>
+      <div class="slide">
+        <img src="phs2.jpg" alt="">
+        <div class="caption">《꽃 숲》, 2022, oil on canvas, 116.8x91.0cm</div>
+      </div>
+      <div class="slide">
+        <img src="phs3.jpg" alt="">
+        <div class="caption">《한 쌍》, 2023, oil on canvas, 53x45cm</div>
+      </div>
+      <div class="slide">
+        <img src="phs4.jpg" alt="">
+        <div class="caption">《나무 그림자》, 2024
+, oil on canvas, 72.7x91.0cm</div>
+      </div>
+      
+    </div>
+  </div>
+    <div class="dots" id="dots"></div>
+
+  <!-- 슬라이드 삽입 끝 -->
+
+       <script src="about.js"></script>
+
+</body>
+</html>
+

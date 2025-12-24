@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>워크숍 안내</title>
+  <style>
+  @import url('https://fastly.jsdelivr.net/npm/galmuri@latest/dist/galmuri.css');
+
+    @font-face {
+      font-family: 'SF_IceLemon';
+      src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_2106@1.1/SF_IceLemon.woff') format('woff');
+      font-weight: normal;
+      font-style: normal;
+    }
+    @font-face {
+     font-family: 'DungGeunMo';
+     src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_six@1.2/DungGeunMo.woff') format('woff');
+     font-weight: normal;
+     font-style: normal;
+}
+
+
+
+    html, body {
+      margin: 0;
+      padding: 0;
+      font-family: sans-serif;
+      background-color: #ecf5f2;
+      overflow: auto;
+    }
+
+    .wrapper {
+      max-width: 600px;
+      margin: 0 auto;
+      padding: 20px;
+      box-sizing: border-box;
+    }
+
+    .diagonal-block {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      color: #333;
+      margin-bottom: 20px;
+      padding: 20px;
+      background: radial-gradient(circle, #e7c7d9 0%, #f6e9f0 60%, #fcfafc 100%);
+      border-radius: 20px;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2), 0 -2px 5px rgba(0, 0, 0, 0.2);
+    }
+
+
+/*galmuri9 15px 12px 'DungGeunMo';: 16px, 13px*/
+    .title {
+      font-family: 'galmuri9', sans-serif;
+      font-size: 15px;
+      margin-bottom: 10px;
+      padding: 8px;
+      text-align: center;
+      background-color: #e1b7cd;
+      color: rgb(243, 243, 243);
+      border-radius: 20px;
+      text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+      border: dashed 2px;
+      box-shadow: inset 0 2px 3px rgba(0, 0, 0, 0.25);
+
+    }
+
+     @media (max-width: 480px) {
+      .title {
+        font-size: 14px;
+      }
+
+      .info {
+        font-size: 0.9rem;
+      }
+    }
+
+.form {
+  font-family: 'galmuri9', sans-serif;
+  font-size: 12px;
+  margin:  auto; /* 중앙 정렬을 위해 auto 추가 */
+  width: 100px;
+  padding: 6px;
+  text-align: center;
+  background-color: #e1b7cd;
+  color: rgb(243, 243, 243);
+  border-radius: 20px;
+        text-shadow: 0 0 2px rgba(0, 0, 0, 0.3);
+  border: dashed 2px;
+  display: block; /* flex 제거 (block으로 대체) */
+  box-shadow: inset -4px 0 3px rgba(0, 0, 0, 0.3), inset 4px 0 3px rgba(0, 0, 0, 0.3);
+
+}
+
+.form:hover{
+  background-color: rgb(140, 192, 174);
+}
+
+.info {
+  display: grid;
+  grid-template-columns: 40px 1fr;
+  row-gap: 5px;
+  column-gap: 5px;
+  font-size: 14px;
+  line-height: 1.5;
+  padding: 10px;
+}
+
+.info-label {
+  font-weight: bold;
+  text-align: left;
+  color: #444;
+    font-size: 14px;
+
+}
+
+.info-value {
+  color: #333;
+    font-size: 15px
+
+}
+
+/*
+    .info {
+      display: flex;
+      flex-wrap: wrap;
+      font-size: 0.95rem;
+      line-height: 1.5;
+      font-size: 14px;
+    }
+
+    .info-label {
+      font-weight: bold;
+      min-width: 60px;
+      padding-right: 8px;
+    }
+
+    .info-value {
+      flex: 1;
+      min-width: 0;
+    }
+      */
+
+    a {
+      text-decoration: none;
+      color: darkseagreen;
+      word-break: break-word;
+    }
+
+    span.small {
+      font-size: 0.85rem;
+      color: #666;
+    }
+
+   
+
+    .recruit{
+      text-align: center;
+      font-size: small;
+    }
+  </style>
+</head>
+<body>
+  <div class="wrapper">
+
+    <div class="diagonal-block">
+      <div class="title">◅ 향에서 피어난 나만의 풍경 ▻</div>
+      <div class="info">
+  <div class="info-label">기간</div>
+  <div class="info-value">7/29 (화) ~ 8/2 (토) 10:30~18:30</div>
+
+  <div class="info-label">장소</div>
+  <div class="info-value">성수 언더스탠드에비뉴 내 공간</div>
+
+  <div class="info-label">대상</div>
+  <div class="info-value">전시 관람객 누구나</div>
+
+  <div class="info-label">내용</div>
+  <div class="info-value">
+    작가의 작품과 향에서 받은 영감을 나만의 감각으로 표현해보는 프로그램입니다. 향을 맡고 떠오른 풍경을 수채화로 표현하고, 나만의 감상을 전시장에 함께 전시해보세요.
+    <br><span class="small">(*재료 소진 시 조기 마감될 수 있습니다.)</span>
+  </div>
+</div>
+
+    </div>
+
+    <div class="diagonal-block">
+      <div class="title">◅ 하바리움 디퓨저 만들기 ▻</div>
+      <div class="info" >
+  <div class="info-label">기간</div>
+  <div class="info-value"> 7/31 (목), 8/2 (토) 14:00-14:30 / 17:00-17:30<br>(소요시간: 30분 내외)</div>
+
+  <div class="info-label">장소</div>
+  <div class="info-value">성수 언더스탠드에비뉴 내 공간</div>
+
+  <div class="info-label">대상</div>
+  <div class="info-value">사전 신청자 대상<br>(잔여 인원 발생 시 현장 신청 가능)</div>
+
+<div class="info-label">진행</div>
+  <div class="info-value">전시 기획 주최팀 NP 내 담당자</div>
+
+  <div class="info-label">내용</div>
+  <div class="info-value">
+    작가의 작품에서 받은 감정과 분위기를 향으로 담아내는 워크숍입니다. 어울리는 향과 자연물을 골라 나만의 하바리움 디퓨저를 만들어보세요.<br>
+    <span style="font-size: small;"></span>
+     
+  </div>
+ 
+</div>
+      <div class="form"><a href="https://forms.gle/it5auPq8r2H7E8NXA" style="color: rgb(255, 255, 255); ">▻ 신청하기 ◅</a></div>
+     
+     </div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

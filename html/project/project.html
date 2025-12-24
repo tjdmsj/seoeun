@@ -1,0 +1,214 @@
+
+   <!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="viewport-fit=cover, width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">  <title>home</title>
+  <style>
+    html, body {
+      margin: 0;
+      padding: 0;
+      background-color: black;
+      height: 100%;
+      font-family: sans-serif;
+      overflow: hidden;
+    }
+
+.lang { display: none; }
+
+.lang.active { display: block; }
+
+    .wrapper {
+    position: relative;
+    width: 100%;       /* 모바일에서도 꽉 차게 */
+    max-width: 430px;  /* 최대 430px */
+    margin: 0 auto;
+    min-height: 100vh;
+    background-color: #ffffff;
+    background-size: cover;
+    background-position: center center;
+    background-repeat: no-repeat;
+  }
+
+
+.accordion-container {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    max-width: 430px;
+    margin: 0 auto;
+  }
+
+  .accordion-content iframe {
+    width: 100%;
+    height: 100%;
+    border: none;
+    display: block;
+    box-sizing: border-box;
+    padding: 10px;   /* margin 대신 padding */
+  }
+
+  /* 화면 크기가 430px보다 작을 때도 꽉 차도록 */
+  @media screen and (max-width: 430px) {
+    .wrapper, .accordion-container {
+      width: 100%;
+      max-width: 100%;
+    }
+    .accordion-content iframe {
+      padding: 5px; /* 작은 화면에서는 padding 축소 */
+    }
+  }
+
+.accordion-item {
+  background-color: #ffffff;
+  overflow: hidden;
+  transition: all 0.3s ease;
+}
+
+
+/* 작가별 border 색상 지정 */
+#artist1 { border-top: 3px solid #F5E9DA; border-radius: 30%;} /* 베이지 */
+#teamnp { border-top: 3px solid #A8D5BA;  border-radius: 30%;} /* 초록 */
+#conveyg { border-top: 3px solid #EF7C7C; border-radius: 30%; } /* 빨강 */
+#thisabled { border-top: 3px solid #CBAACB;  border-radius: 30%;} /* 보라 */
+
+#artist1:hover {
+  background-color: #F5E9DA;
+  color: black;
+}
+
+#teamnp:hover {
+  background-color: #A8D5BA;
+  color: black;
+}
+
+#conveyg:hover {
+  background-color: #EF7C7C;
+  color: white;
+}
+
+#thisabled:hover {
+  background-color: #CBAACB;
+  color: black;
+}
+.accordion-header {
+  padding: 10px;
+  cursor: pointer;
+  height: 50px;
+  font-size: 45px;
+  transition: background-color 0.3s ease;
+  text-align: center;
+ 
+}
+
+
+.accordion-header:hover {
+  background-color: #333;
+  color: #ffffff;
+}
+
+.accordion-content {
+  height: 0;
+  overflow: hidden;
+  transition: height 0.3s ease;
+}
+
+
+.home-btn {
+  position: fixed;
+  top: 15px;
+  right: 15px;
+  background: rgba(255, 255, 255, 0.8);
+  border: 1px solid #333;
+  border-radius: 50%;
+  width: 35px;
+  height: 35px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 18px;
+  cursor: pointer;
+  z-index: 9999;
+  transition: background 0.2s;
+}
+
+.home-btn:hover {
+  background: #333;
+  color: white;
+}
+
+  </style>
+</head>
+<body>
+     <div class="home-btn" onclick="location.href='../home.html'">⌂</div>  <!-- 추가 -->
+
+<div class="wrapper">
+<div class="accordion-container">
+
+ 
+
+  <div class="accordion-item" data-src="np.html">
+    <div class="accordion-header" id="teamnp">TEAM NP</div>
+    <div class="accordion-content">
+      <iframe></iframe>
+    </div>
+  </div>
+
+  <div class="accordion-item" data-src="conveyg.html">
+    <div class="accordion-header" id="conveyg">CONVEY.G</div>
+    <div class="accordion-content">
+      <iframe></iframe>
+    </div>
+  </div>
+
+  <div class="accordion-item" data-src="thisabled.html">
+    <div class="accordion-header" id="thisabled">THISABLED</div>
+    <div class="accordion-content">
+      <iframe></iframe>
+    </div>
+  </div>
+
+</div>
+</div>
+
+<script>
+    const items = document.querySelectorAll('.accordion-item');
+
+items.forEach(item => {
+  const header = item.querySelector('.accordion-header');
+  const content = item.querySelector('.accordion-content');
+  const iframe = item.querySelector('iframe');
+
+  header.addEventListener('click', () => {
+    const isOpen = item.classList.contains('active');
+
+    // 모든 항목 닫기
+    items.forEach(i => {
+      i.classList.remove('active');
+      i.querySelector('.accordion-content').style.height = '0px';
+    });
+
+    // 열려 있지 않다면 열기
+    if (!isOpen) {
+      item.classList.add('active');
+      content.style.height = '400px';
+      const src = item.getAttribute('data-src');
+      iframe.setAttribute('src', src);
+    } else {
+      iframe.removeAttribute('src'); // 열려있던 거 닫으면 src 제거
+    }
+  });
+});
+ window.addEventListener('DOMContentLoaded', () => {
+    const teamItem = document.querySelector('#teamnp').closest('.accordion-item');
+    const teamContent = teamItem.querySelector('.accordion-content');
+    const teamIframe = teamItem.querySelector('iframe');
+    const src = teamItem.getAttribute('data-src');
+
+    teamItem.classList.add('active');
+    teamContent.style.height = '400px';
+    teamIframe.setAttribute('src', src);
+  });
+</script>
+</body>
+</html>

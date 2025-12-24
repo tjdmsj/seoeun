@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playwrite+VN+Guides&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Bitcount+Grid+Double:wght@100..900&display=swap" rel="stylesheet">
+
+  <title>Zoom in Mobile Frame</title>
+  <style>
+    html, body {
+margin: 0 auto;
+      padding: 0;
+      background: rgb(0, 0, 0);
+      font-family: sans-serif;
+      overflow-x: hidden;
+    }
+
+    /* 모바일 중심 고정 프레임 */
+    .zoom-wrapper {
+  position: fixed;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 430px;
+  height: 100vh;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column; /* 위-아래로 배치 */
+  align-items: center;
+  z-index: 2;
+  background: rgb(255, 255, 255);
+}
+
+.zoom-text {
+  position: absolute;
+  top: 20px; /* 이미지 위쪽에 고정 */
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 3;
+  font-size: 15px;
+  font-family: "Playwrite VN Guides", cursive;
+  font-weight: bold;
+  color: #f7f7f7;
+  padding: 8px 16px;
+  margin-top: 180px;
+  border-radius: 8px;
+  pointer-events: none;
+  transition: opacity 0.4s ease;
+  opacity: 1;
+}
+
+
+.zoom-image {
+  width: 100%;
+  height: auto;
+  transform: scale(1);
+  transform-origin: 52.2% 50%;
+  transition: transform 0.2s ease;
+  pointer-events: none;
+}
+
+
+    /* 확대된 후 고정된 배경 */
+    .background-fixed {
+      position: fixed;
+      top: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 430px;
+      height: 100vh;
+      background-repeat: no-repeat;
+      background-size: cover;
+      background-position: center;
+      opacity: 0;
+      z-index: 1;
+      transition: opacity 0.6s ease;
+    }
+
+    /* 본문 */
+    .content {
+      position: relative;
+      z-index: 3;
+      background: #f7f7f7;
+      color: black;
+      width: 100%;
+      max-width: 430px;
+      margin: 300vh auto 0;
+      padding: 40px 20px;
+      box-sizing: border-box;
+    }
+
+    .button-wrapper {
+  text-align: center;
+  margin-top: 40px;
+    position: relative; /* 기준 부모가 되어야 함 */
+
+}
+
+.cloud-button {
+  padding: 16px 36px;
+  font-size: 18px;
+  font-family:  "Playwrite VN Guides", cursive;
+  font-weight:500;
+  text-decoration: none;
+  color: #333;
+  background-color: #ffffff;
+  border: none;
+  border-radius: 50px; /* 완전 둥글게 */
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.cloud-button:hover {
+   background-image: linear-gradient(
+    90deg,
+    rgba(255, 0, 0, 0.4),    /* 빨강 */
+    rgba(255, 165, 0, 0.4),  /* 주황 */
+    rgba(255, 255, 0, 0.4),  /* 노랑 */
+    rgba(0, 128, 0, 0.4),    /* 초록 */
+    rgba(0, 0, 255, 0.4),    /* 파랑 */
+    rgba(75, 0, 130, 0.4),   /* 남색 */
+    rgba(238, 130, 238, 0.4) /* 보라 */
+  );
+  
+  color: black; /* 글자색도 대비되게 흰색 추천 */
+  transition: background-image 0.5s ease;
+}
+
+  </style>
+</head>
+<body>
+
+  <!-- 확대 이미지 (모바일 프레임 안) -->
+
+<div class="zoom-wrapper" id="zoomWrapper">
+  <div class="zoom-text" id="zoomText">TEAM NP</div>
+  <img src="NP.jpg" alt="Zoom Image" class="zoom-image" id="zoomImage">
+</div>
+
+
+  <!-- 고정 배경 (모바일 중앙 비율) -->
+  <div class="background-fixed" id="bgFixed"></div>
+
+  <!-- 본문 -->
+  <div class="content">
+    <h1 style="font-family: 'Bitcount Grid Double', system-ui; font: size 12px;; font-weight: 350;">Opening Note</h1>
+    <p>이 아래부터 전시 설명
+Lorem  도담도담 함초롱하다 도르레 우리는 비나리 아리아 도르레 아련 컴퓨터 별빛 컴퓨터 사과 미쁘다 이플 예그리나 우리는 나래 안녕 아련 아련 가온해 로운 가온누리 예그리나 가온누리 도담도담 나비잠 여우비 로운 감사합니다 도르레 도서 다솜 포도 미쁘다 미쁘다 곰다시 미리내 여우비 바람꽃 아련 아련 늘품 아슬라 그루잠 컴퓨터 미쁘다 여우비 그루잠 이플.
+
+도서 별빛 도서 여우별 곰다시 사과 비나리 아리아 소록소록 바나나 별하 우리는 가온누리 예그리나 소솜 나비잠 도서 별빛 비나리 가온누리 사과 로운 아슬라 미리내 바람꽃 책방 소솜 소솜 아름드리 우리는 나비잠 나래 늘품 도담도담 함초롱하다 감또개 그루잠 함초롱하다 로운 소솜 로운 나래 아슬라 곰다시 안녕 아슬라 아슬라 가온해 아름드리 아슬라.
+
+미리내 책방 노트북 가온누리 도서 감또개 늘품 책방 아리아 소록소록 도서관 감또개 아슬라 가온누리 함초롱하다 감또개 도서관 늘품 미리내 안녕 나래 가온해 도서 여우비 소솜 그루잠 로운 미리내 소록소록 가온해 그루잠 다솜 안녕 이플 옅구름 로운 가온누리 소솜 다솜 소록소록 나비잠 아련 나래 노트북 노트북 산들림 가온누리 그루잠 책방 미리내.
+<br>
+가온누리 도르레 미리내 별빛 감사합니다 아슬라 안녕 가온해 예그리나 아름드리 노트북 곰다시 미리내 도르레 노트북 별빛 아련 소솜 도르레 미리내 예그리나 미쁘다 가온누리 소록소록 사과 이플 컴퓨터 나래 나비잠 그루잠 별빛 도르레 나래 우리는 다솜 나래 도르레 별하 감사합니다 소솜 나비잠 도서관 별하 그루잠 아련 감사합니다 감사합니다 노트북 예그리나 로운.
+<br>
+소록소록 아름드리 옅구름 가온해 함초롱하다 미쁘다 아련 그루잠 감또개 포도 아름드리 산들림 아름드리 나래 산들림 나래 곰다시 다솜 도르레 아리아 도서 감사합니다 안녕 감사합니다 컴퓨터 나비잠 산들림 나비잠 나래 도담도담 산들림 도르레 소록소록 도담도담 노트북 달볓 예그리나 컴퓨터 이플 예그리나 노트북 여우비 바나나 별하 여우비 아련 그루잠 바람꽃 미쁘다 별빛.
+<br>
+아름드리 아련 도르레 사과 소록소록 옅구름 여우비 도담도담 로운 이플 우리는 옅구름 다솜 미쁘다 달볓 여우비 포도 옅구름 도담도담 함초롱하다 가온해 별빛 바람꽃 도담도담 가온해 그루잠 여우비 그루잠 소솜 곰다시 별빛 우리는 가온해 로운 별빛 여우별 바람꽃 나래 사과 아슬라 아련 바람꽃 미리내 로운 감또개 감사합니다 달볓 나래 가온누리 옅구름.  
+
+    </p>
+
+      <!-- 버튼 추가 -->
+<div class="button-wrapper">
+  <a href="home.HTML" class="cloud-button" >⇨ into a cut</a>
+</div>
+
+</div>
+
+  
+
+  
+  <script>
+ const zoomImage = document.getElementById('zoomImage');
+const zoomWrapper = document.getElementById('zoomWrapper');
+const bgFixed = document.getElementById('bgFixed');
+const zoomText = document.getElementById('zoomText');
+
+window.addEventListener('scroll', () => {
+  const scrollY = window.scrollY;
+
+  // 이미지 확대
+  let scale = 1 + scrollY / 20;
+  zoomImage.style.transform = `scale(${scale})`;
+
+  // 텍스트 페이드아웃 (0~100 사이 서서히 사라짐)
+  let opacity = 1 - scrollY / 100;
+  if (opacity < 0) opacity = 0;
+  zoomText.style.opacity = opacity;
+
+  // 배경 전환 & zoomWrapper opacity 조절
+  if (scrollY >= 1000) {
+    // zoomWrapper를 숨기지 말고 투명도만 낮춤 or 유지
+    zoomWrapper.style.opacity = 1; // 1로 유지하면 이미지 계속 보임
+    // 또는 서서히 투명도 줄이려면 아래처럼 작성 가능
+    // zoomWrapper.style.opacity = 1 - (scrollY - 1000) / 200;
+
+    bgFixed.style.backgroundImage = `url('NP.png')`;
+    bgFixed.style.opacity = 1;
+  } else {
+    zoomWrapper.style.opacity = 1;
+    bgFixed.style.opacity = 0;
+  }
+});
+
+
+
+
+  
+</script>
+
+</body>
+</html>

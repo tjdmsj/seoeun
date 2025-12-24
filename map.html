@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>전시 페이지</title>
+  <style>
+    html, body {
+      margin: 0;
+      padding: 0;
+      height: 100%;
+      font-family: sans-serif;
+      background-color: rgb(255, 255, 255);
+    }
+
+    .wrapper {
+      max-width: 430px;
+      height: 100vh;
+      margin: 0 auto;
+      display: grid;
+      grid-template-rows: auto 1fr;
+      background-color: #ffffff;
+      padding: 3px;
+    }
+    .header {
+        padding: 5px;
+        height: 50px;
+        background-color: aqua;
+    }
+    .artist-tag {
+  border: 3px ridge;
+  padding: 5px;
+  margin-right: 5px;
+  cursor: pointer;
+  text-decoration: none; /* 밑줄 제거 */
+  color: black;          /* 글자색 */
+}
+
+    .artist-sentence {
+      text-align: center;
+      padding: 10px;
+      font-size: 1.1rem;
+      color: black;
+      line-height: 1.4;
+      margin-top: 0;
+    }
+
+    .artist-sentence span {
+      cursor: pointer;
+      color: rgb(37, 37, 243);
+      font-weight: bold;
+      transition: color 0.3s;
+    }
+
+    .artist-sentence span:hover {
+      color: rgb(255, 87, 87);
+      text-decoration: underline;
+    }
+
+    .content {
+      width: 100%;
+      height: 100%;
+      background-color: white;
+    }
+
+    iframe {
+      width: 100%;
+      height: 100%;
+      border: none;
+      display: block;
+    }
+  </style>
+</head>
+<body>
+<div class="header">dfds</div>
+<div class="wrapper">
+  <!-- 텍스트 문장 안에서 클릭 가능한 span -->
+  <p class="artist-sentence" style="line-height: 35px; font-size: larger;">
+    <span data-src="/artist/ch.html" style="border: 3px ridge rgb(255, 15, 15); padding: 5px; color: black; font-weight: normal;">#박찬흠</span>
+    <span data-src="page2.html" style="border: 3px ridge rgb(220, 45, 255); padding: 5px; color: black; font-weight: normal;">#이다래</span>
+    <span data-src="page3.html" style="border: 3px ridge rgb(255, 240, 180); padding: 5px;color: black;font-weight: normal;">#박혜신</span>
+    <span data-src="page4.html" style="border: 3px ridge rgb(44, 255, 51); padding: 5px;color: black; font-weight: normal;">#강선아</span> 작가의 이야기를 만나보세요!
+  </p>
+
+  <!-- iframe -->
+  <div class="content">
+    <iframe id="viewer" src=""></iframe>
+  </div>
+</div>
+
+<script>
+  const spans = document.querySelectorAll(".artist-sentence span");
+  const iframe = document.getElementById("viewer");
+
+  spans.forEach(span => {
+    span.addEventListener("click", () => {
+      const src = span.getAttribute("data-src");
+      iframe.setAttribute("src", src);
+    });
+  });
+</script>
+
+</body>
+</html>

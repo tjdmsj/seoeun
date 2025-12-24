@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Post-it Board</title>
+  <style>
+    * { box-sizing: border-box; }
+
+     @font-face {
+    font-family: 'HakgyoansimByeolbichhaneulTTF-B';
+    src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/2408-5@1.0/HakgyoansimByeolbichhaneulTTF-B.woff2') format('woff2');
+    font-weight: 700;
+    font-style: normal;}
+
+    @font-face {
+    font-family: 'HSBombaram21-Regular';
+    src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_2302@1.0/HSBombaram21-Regular.woff2') format('woff2');
+    font-weight: normal;
+    font-style: normal;
+}
+
+    body {
+      margin: 0;
+      font-family: sans-serif;
+      background-color: #ffffff;
+    }
+    .wrapper {
+      max-width: 430px;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      height: 100vh;
+      position: relative;
+    }
+    header {
+      padding: 10px;
+      background-color: #ffffff;
+      position: sticky;
+      top: 0;
+      z-index: 20;
+    }
+    .header-top {
+      display: flex;
+      justify-content: space-between;
+      font-size: 14px;
+      margin-bottom: 5px;
+    align-items: center; /* 수직 가운데 정렬 */
+    height: 40px;
+    }
+    .header-center {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+ font-size: 12px;
+      font-weight: light;
+      text-align: center;
+  align-items: center;
+}
+ 
+    .lock-btn {
+      background: none;
+      border: none;
+      font-size: 16px;
+      cursor: pointer;
+    }
+    .color-picker {
+      display: flex;
+      flex-wrap: nowrap;
+      gap: 8px;
+      padding: 10px;
+      background-color: #fff;
+      border-top: 1px solid #ddd;
+      position: sticky;
+      top: 72px; /* header height */
+      z-index: 19;
+        overflow-x: auto;
+        overflow-y: hidden;
+
+    }
+    .color-swatch {
+         flex: 0 0 auto;   
+      width: 24px;
+      height: 24px;
+      border-radius: 50%;
+      cursor: pointer;
+      border: 2px solid transparent;
+    }
+    .color-swatch.selected {
+      border-color: #000;
+    }
+
+    .floating-menu {
+  position: fixed;
+  bottom: 100px; /* chat-bar 위쪽 */
+  z-index: 30;
+  padding: 15px;
+  left: 50%; /* 부모(viewport) 너비의 50% 지점 */
+    transform: translateX(-50%); /* 자신의 너비의 50%만큼 왼쪽으로 이동 */
+}
+
+.menu-toggle-btn {
+  width: 50px;
+  height: 30px;
+  border-radius: 40%;
+  border: none;
+  font-size: 20px;
+  background-color: #c2c2c2;
+  color: #222222;
+  cursor: pointer;
+  
+}
+
+.menu-box {
+  position: absolute; /* ✅ 버튼 기준으로 위치 설정 */
+  bottom: 40px;        /* ✅ 버튼 위로 띄우기 (버튼 높이 + 여백) */
+  display: none;
+  flex-direction: column;
+  background: white;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  padding: 6px 10px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+  width: 200px;
+  font-size: 14px;
+  margin-bottom: 6px;
+}
+
+.menu-row {
+  display: flex;
+  justify-content: space-between;
+  margin: 4px 0;
+}
+
+
+
+    .posts {
+      padding: 10px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      justify-content: space-between;
+      flex-grow: 1;
+      overflow-y: auto;
+    }
+    .post {
+      width: 47%;
+      padding: 10px;
+      min-height: 80px;
+      border-radius: 8px;
+      font-size: 14px;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+      white-space: pre-wrap;
+      position: relative;
+      overflow-y: auto;
+    }
+    .chat-bar {
+      display: flex;
+      padding: 10px;
+      background-color: #fff;
+      border-top: 1px solid #ddd;
+      position: sticky;
+      bottom: 0;
+      z-index: 10;
+    }
+    .chat-bar textarea {
+      flex: 1;
+      resize: none;
+      padding: 8px;
+      border-radius: 4px;
+      border: 1px solid #ccc;
+      font-size: 14px;
+    }
+    .chat-bar button {
+      margin-left: 10px;
+      padding: 8px 12px;
+      font-size: 14px;
+      background-color: #333;
+      color: #fff;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+    .delete-btn {
+      margin-top: 8px;
+      font-size: 12px;
+      background-color: #e74c3c;
+      color: #fff;
+      border: none;
+      border-radius: 4px;
+      padding: 4px 8px;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+  <div class="wrapper">
+    <header>
+      <div class="header-top">
+        <div><a href="../home.html">--</a></div>
+        <div class="header-center" >오늘 전시를 보고 느낀점을 기록해주세요!</div>
+        <button class="lock-btn" onclick="promptPassword()">🔒</button>
+      </div>
+     
+    </header>
+
+
+    <div class="posts" id="posts"></div>
+    <div class="color-picker" id="colorPicker" ></div>
+
+    <div class="floating-menu">
+  <button class="menu-toggle-btn" onclick="toggleMenu()" style="font-family: 'HakgyoansimByeolbichhaneulTTF-B';">+</button>
+  <div class="menu-box" id="menuBox">
+    <div class="menu-row"><a href="workshop1.html" style="text-decoration: none; color: #000;">풍경 그리기 워크샵 참여하기</a></div>
+    <div class="menu-row"><a href="workshop2.html"style="text-decoration: none; color: #000;">하바리움 워크샵 참여하기</a></div>
+  </div>
+</div>
+
+
+    <div class="chat-bar" >
+      <textarea id="message" rows="2" placeholder="Write your post..."></textarea>
+      <button onclick="addPost()">Send</button>
+    </div>
+  </div>
+
+  <script>
+    const colors = [
+      '#F7C59F', '#FFD97D', '#A1C6EA', '#B8F2E6', '#D291BC', '#CCCCCC',
+      '#FFC6C7', '#C2F784', '#FFF7AE', '#C9C6FF', '#C7E9FF', '#F0B8A4','#F0B8A4','#F0B8A4'
+    ];
+    let selectedColor = colors[0];
+    let deleteMode = false;
+    const password = "1234"; // 미리 설정된 비밀번호
+
+    const colorPicker = document.getElementById('colorPicker');
+    const postsContainer = document.getElementById('posts');
+    const messageInput = document.getElementById('message');
+
+    // 컬러칩 표시
+    colors.forEach(color => {
+      const swatch = document.createElement('div');
+      swatch.className = 'color-swatch';
+      swatch.style.backgroundColor = color;
+      if (color === selectedColor) swatch.classList.add('selected');
+      swatch.onclick = () => {
+        selectedColor = color;
+        document.querySelectorAll('.color-swatch').forEach(s => s.classList.remove('selected'));
+        swatch.classList.add('selected');
+      }
+      colorPicker.appendChild(swatch);
+    });
+
+    function addPost() {
+      const text = messageInput.value.trim();
+      if (!text) return;
+      const post = {
+        id: Date.now(),
+        color: selectedColor,
+        text
+      };
+      const posts = getPosts();
+      posts.push(post);
+      localStorage.setItem('posts', JSON.stringify(posts));
+      messageInput.value = '';
+      renderPosts();
+    }
+
+    function getPosts() {
+      return JSON.parse(localStorage.getItem('posts') || '[]');
+    }
+
+    function renderPosts() {
+      postsContainer.innerHTML = '';
+      const posts = getPosts();
+      posts.forEach(post => {
+        const div = document.createElement('div');
+        div.className = 'post';
+        div.style.backgroundColor = post.color;
+
+        const textNode = document.createElement('div');
+        textNode.textContent = post.text;
+        div.appendChild(textNode);
+
+        if (deleteMode) {
+          const delBtn = document.createElement('button');
+          delBtn.textContent = '삭제';
+          delBtn.className = 'delete-btn';
+          delBtn.onclick = () => deletePost(post.id);
+          div.appendChild(delBtn);
+        }
+
+        postsContainer.appendChild(div);
+      });
+    }
+
+        function renderPosts() {
+      postsContainer.innerHTML = '';
+      const posts = getPosts();
+      posts.forEach(post => {
+        const div = document.createElement('div');
+        div.className = 'post';
+        div.style.backgroundColor = post.color;
+
+        const textNode = document.createElement('div');
+        textNode.textContent = post.text;
+        div.appendChild(textNode);
+
+        if (deleteMode) {
+          const delBtn = document.createElement('button');
+          delBtn.textContent = '삭제';
+          delBtn.className = 'delete-btn';
+          delBtn.onclick = () => deletePost(post.id);
+          div.appendChild(delBtn);
+        }
+
+        postsContainer.appendChild(div);
+      });
+          postsContainer.scrollTop = postsContainer.scrollHeight;
+
+    }
+
+
+
+    function deletePost(id) {
+      let posts = getPosts();
+      posts = posts.filter(p => p.id !== id);
+      localStorage.setItem('posts', JSON.stringify(posts));
+      renderPosts();
+    }
+
+    function promptPassword() {
+      const input = prompt("비밀번호를 입력하세요:");
+      if (input === password) {
+        deleteMode = !deleteMode;
+        renderPosts();
+      } else {
+        alert("비밀번호가 틀렸습니다.");
+      }
+    }
+
+    renderPosts();
+
+    function toggleMenu() {
+  const menu = document.getElementById('menuBox');
+  menu.style.display = menu.style.display === 'flex' ? 'none' : 'flex';
+}
+  </script>
+</body>
+</html>

@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Sticky Header + Horizontal Menu</title>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,500;0,700;1,300;1,700&amp;family=Poppins:ital,wght@0,400;0,700;1,400;1,700">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bitcount+Grid+Double:wght@100..900&display=swap" rel="stylesheet">
+
+  <style type="text/css">
+  @font-face
+  {font-family:adobe-garamond-pro;
+    src:url(https://use.typekit.net/af/1a756d/00000000000000007735d927/31/l?subset_id=2&fvd=n4&v=3) 
+    format("woff2"),url(https://use.typekit.net/af/1a756d/00000000000000007735d927/31/d?subset_id=2&fvd=n4&v=3) 
+  format("woff"),url(https://use.typekit.net/af/1a756d/00000000000000007735d927/31/a?subset_id=2&fvd=n4&v=3) 
+  format("opentype");font-weight:400;font-style:normal;font-stretch:normal;font-display:auto;}
+
+  @font-face
+  {font-family:adobe-garamond-pro;
+    src:url(https://use.typekit.net/af/a4e080/00000000000000007735d91e/31/l?subset_id=2&fvd=n7&v=3) 
+    format("woff2"),url(https://use.typekit.net/af/a4e080/00000000000000007735d91e/31/d?subset_id=2&fvd=n7&v=3) 
+    format("woff"),url(https://use.typekit.net/af/a4e080/00000000000000007735d91e/31/a?subset_id=2&fvd=n7&v=3) 
+    format("opentype");font-weight:700;font-style:normal;font-stretch:normal;font-display:auto;}
+
+  @font-face
+  {font-family:adobe-garamond-pro;
+    src:url(https://use.typekit.net/af/c45313/00000000000000007735d924/31/l?subset_id=2&fvd=i4&v=3) 
+    format("woff2"),url(https://use.typekit.net/af/c45313/00000000000000007735d924/31/d?subset_id=2&fvd=i4&v=3) 
+  format("woff"),url(https://use.typekit.net/af/c45313/00000000000000007735d924/31/a?subset_id=2&fvd=i4&v=3) 
+  format("opentype");font-weight:400;font-style:italic;font-stretch:normal;font-display:auto;}
+
+  @font-face
+  {font-family:adobe-garamond-pro;
+    src:url(https://use.typekit.net/af/7b6e7b/00000000000000007735d921/31/l?subset_id=2&fvd=i7&v=3) 
+    format("woff2"),url(https://use.typekit.net/af/7b6e7b/00000000000000007735d921/31/d?subset_id=2&fvd=i7&v=3) 
+    format("woff"),url(https://use.typekit.net/af/7b6e7b/00000000000000007735d921/31/a?subset_id=2&fvd=i7&v=3) 
+    format("opentype");font-weight:700;font-style:italic;font-stretch:normal;font-display:auto;}
+
+    html, body {
+      margin: 0;
+      padding: 0;
+      background-color: black;
+      height: 100%;
+      font-family: sans-serif;
+      overflow: hidden;
+    }
+    * {
+  box-sizing: border-box;
+}
+
+    @font-face {
+      font-family: 'Pretendard-Regular';
+      src: url('https://fastly.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-Regular.woff') format('woff');
+      font-weight: 400;
+      font-style: normal;
+    }
+
+  .wrapper {
+      position: relative;
+      max-width: 430px;
+      margin: 0 auto;
+      height: 100vh;
+      background-color: white;
+      display: flex;
+      flex-direction: column;
+    
+    }
+/* 모바일 등 화면이 430px 이하일 때 */
+@media (max-width: 430px) {
+  .wrapper {
+    width: 100%; /* 화면 폭 꽉 채우기 */
+  }
+}
+    /* 헤더 */
+   .header-top {
+  position: relative;
+  width: 100%;
+  text-align: center;
+  font-family: 'Bitcount Grid Double', system-ui;
+}
+
+.scene-title {
+  font-size: 1.5rem;
+  font-family: 'Bitcount Grid Double', system-ui;
+  font-weight: 300;
+  color: black;
+  text-decoration: none;
+  display: inline-block;
+}
+
+.nav-arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 1.5rem;
+  color: black;
+  text-decoration: none;
+  padding: 8px 16px;
+  cursor: pointer;
+  user-select: none;
+}
+
+.left-arrow {
+  left: 0;
+}
+
+.right-arrow {
+  right: 0; /* wrapper padding과 동일하게 맞춤 */
+}
+
+
+   .sticky-header {
+  position: sticky;
+  top: 0;
+  background: linear-gradient(135deg, #ecd6ff, #e6ffb4, #ffc1ba, #f3f4ec);
+  border-bottom: 1px solid #ddd;
+  z-index: 100;
+  display: grid;
+  grid-template-rows: auto auto;
+  padding: 0;
+}
+
+/* 상단: 가운데 텍스트 */
+.header-top {
+  position: relative;
+  padding: 16px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.scene-title {
+  font-size: 1.5rem;
+  font-family: 'Bitcount Grid Double', system-ui;
+  font-weight: 300;
+  color: black;
+  text-decoration: none;
+}
+
+/* 하단: 3칸 메뉴 */
+.header-bottom {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  text-align: center;
+  border-top: 1px solid #ccc;
+  background-color: rgba(255, 255, 255, 0.3);
+}
+
+.menu-link {
+  padding: 12px 0;
+  font-family: 'Pretendard-Regular', sans-serif;
+  font-size: 0.95rem;
+  text-decoration: none;
+  color: black;
+  transition: background-color 0.3s;
+}
+
+.menu-link:hover {
+  background-color: rgba(0, 0, 0, 0.05);
+}
+
+    
+ 
+    .content {
+      padding: 20px;
+    }
+
+    .lang {
+      display: none;
+    }
+
+    .lang.active {
+      display: block;
+    }
+  
+ 
+
+/*font-family: 'Cormorant Garamond', serif;
+  font-weight: 700;
+.menu-bar {
+  font-family: 'Poppins', sans-serif;
+  font-weight: 400;
+}
+*/
+.content {
+  font-family: 'adobe-garamond-pro', serif;
+  font-style: italic;
+  font-weight: 400;
+}
+  </style>
+</head>
+<body>
+  <div class="wrapper">
+    <!-- 헤더 -->
+    <header class="sticky-header">
+  <div class="header-top">
+  <a href="2scene.html" class="nav-arrow left-arrow">«</a>
+  <a href="3scene.html" class="scene-title">3 SCENE</a>
+  <a href="4scene.html" class="nav-arrow right-arrow">»</a>
+</div>
+  <div class="header-bottom">
+    <a href="home.html" class="menu-link">Home</a>
+    <a href="about.html" class="menu-link">About</a>
+    <a href="art.html" class="menu-link">Art</a>
+  </div>
+</header>
+
+    
+
+    <!-- 콘텐츠 Home About Interview Artwork & Scent-->
+    <main class="content">
+      <div class="lang ko active">
+        <h2>Project Intro!</h2>
+        <p>Project Intro.</p>
+      </div>
+      <div class="lang en">
+        <h2>Welcome!</h2>
+        <p>This is an exhibition that captures moments of deep immersion.</p>
+      </div>
+    </main>
+  </div>
+
+  <script>
+    // lang 파라미터 가져오기
+    function getLangFromURL() {
+      const params = new URLSearchParams(window.location.search);
+      return params.get("lang") || "ko";
+    }
+
+    // 언어 적용
+    function applyLanguage(lang) {
+      document.querySelectorAll('.lang').forEach(el => {
+        el.classList.remove('active');
+        if (el.classList.contains(lang)) el.classList.add('active');
+      });
+
+      // 메뉴 링크에 lang 파라미터 붙이기
+      document.querySelectorAll('.menu-bar a').forEach(link => {
+        const url = new URL(link.href, location.origin);
+        url.searchParams.set('lang', lang);
+        link.href = url.toString();
+      });
+    }
+
+    // 메뉴 토글
+    function toggleMenu() {
+      const menu = document.getElementById('menuBar');
+      menu.style.display = menu.style.display === 'grid' ? 'none' : 'grid';
+    }
+
+    // 초기 적용
+    window.addEventListener('DOMContentLoaded', () => {
+      const lang = getLangFromURL();
+      applyLanguage(lang);
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <base target="_top"> <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>감각 아카이빙 보드판</title>
+    <style>
+          @import url('https://fastly.jsdelivr.net/npm/galmuri@latest/dist/galmuri.css');
+        * { box-sizing: border-box; }
+
+@font-face {
+    font-family: 'SF_IceLemon';
+    src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_2106@1.1/SF_IceLemon.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+        @font-face {
+            font-family: 'HSBombaram21-Regular';
+            src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_2302@1.0/HSBombaram21-Regular.woff2') format('woff2');
+            font-weight: normal;
+            font-style: normal;
+        }
+@font-face {
+    font-family: 'Cafe24Meongi-W-v1.0';
+    src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/2405-3@1.1/Cafe24Meongi-W-v1.0.woff2') format('woff2');
+    font-weight: normal;
+    font-style: normal;
+}
+
+        body {
+            margin: 0;
+            font-family:'galmuri9', sans-serif;
+            background-color: #ecf5f2;
+        }
+        .wrapper {
+            max-width: 430px;
+            margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+            height: 100vh;
+            position: relative;
+             overflow-y: auto;
+        }
+        header {
+            padding: 10px;
+            position: sticky;
+            top: 0;
+            z-index: 20;
+            background: #ecf5f2;
+        }
+        .header-top {
+            display: flex;
+            justify-content: space-between;
+            font-size: 12px;
+            align-items: center;
+            height: 40px;
+        }
+
+        .header-center {
+            position: absolute;
+            text-align: center;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 12px;
+            align-items: center;
+            color: #1f4f3f;
+        }
+        
+        /*
+        .header-bottom {
+            font-size: 12px;
+            font-weight: light;
+            text-align: center;
+            color: #1f4f3f;
+
+        }
+            */
+        .lock-btn {
+            background: none;
+            border: none;
+            font-size: 15px;
+            cursor: pointer;
+        }
+       .color-picker {
+  display: flex;
+  flex-wrap: nowrap;
+  gap: 8px;
+  padding: 10px;
+  background-color: #ccb191;
+  border-top: 1px solid #ddd;
+  position: fixed; /* ✅ sticky → fixed */
+  bottom: 73px;    /* ✅ chat-bar 높이만큼 위로 올림 */
+  left: 0;
+  width: 100%;
+  z-index: 19;
+  overflow-x: auto;
+  overflow-y: hidden;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+.color-picker::-webkit-scrollbar {
+  display: none;
+}
+
+.arrow-left {
+  left: 5px;
+ 
+}
+
+.arrow-right {
+  right: 5px;
+  
+}
+        .color-swatch {
+  flex: 0 0 auto;
+  width: 68px;
+  height: 30px; /* 높이 살짝 늘림 */
+  border-radius: 20%;
+  cursor: pointer;
+  border: 2px solid transparent;
+  text-align: center; /* 이름 중앙 정렬 */
+  padding-top: 2px; /* 색상 위쪽 여백 */
+}
+        .color-swatch.selected {
+            border-color: #000;
+        }
+        
+        .posts {
+            padding: 10px;
+            
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            justify-content: space-between;
+            flex-grow: 1;
+            overflow-y: auto;
+            padding-bottom: 140px;
+        }
+        .post {
+            width: 47%; /* 2열로 배치하기 위해 47% 설정 */
+            padding: 10px;
+            height: auto;
+            border-radius: 8px;
+            font-size: 14px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            white-space: pre-wrap; /* 줄바꿈 유지 */
+            position: relative;
+            overflow: hidden;
+            
+        }
+        .chat-bar {
+            display: flex;
+            padding: 10px;
+            background-color: #ccb191;
+            border-top: 1px solid #ddd;
+            position: sticky;
+            bottom: 0;
+            z-index: 10;
+             margin-top: 0;
+        }
+        .chat-bar textarea {
+            flex: 1;
+            resize: none;
+            padding: 8px;
+            border-radius: 4px;
+            border: #88e2d0 dashed 2PX;
+            font-size: 14px;
+        }
+        .chat-bar button {
+            margin-left: 10px;
+            padding: 8px 12px;
+            font-size: 20px;
+            font-weight: bold;
+           border: #6cc3a6 dashed 2PX;
+           background-color: #88e2d0;
+           color: #858585da;
+      border-radius: 20px;
+      cursor: pointer;
+            cursor: pointer;
+            font-family: 'Cafe24Meongi-W-v1.0';
+            box-shadow: inset -2px 0 2px rgba(0, 0, 0, 0.3), inset 2px 0 2px rgba(0, 0, 0, 0.3);
+             text-shadow: 0 0 1px rgba(0, 0, 0, 0.3);
+        }
+        .delete-btn {
+            margin-top: 8px;
+            font-size: 12px;
+            background-color: #e74c3c;
+            color: #fff;
+            border: none;
+            border-radius: 4px;
+            padding: 4px 8px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <div class="wrapper">
+        <header>
+            <div class="header-top">
+                <div class="header-center">◜오늘의 감각, 어떻게 다가왔나요?<br>이곳에 함께 공유해주세요 ~ ♪◞</div>
+                <button class="lock-btn" onclick="promptPassword()">⚙</button>
+            </div>
+            <!--
+             <div class="header-bottom">오늘의 감각, 어떻게 다가왔나요?<br>이곳에 함께 공유해주세요!</div>
+        -->
+        </header>
+
+        <div class="posts" id="posts"></div>
+
+        <div class="color-picker" id="colorPicker"></div>
+        
+        
+
+        <div class="chat-bar">
+            <textarea id="message" rows="2" placeholder="좋았던 향 선택 후, <한숨,한컷> 전시 관람 후기를 남겨주세요!"></textarea>
+            <button onclick="addPost()">Send</button>
+        </div>
+    </div>
+
+    <script>
+
+        const colors = ['#AEE4FF','#C8F4C2','#DCC7FF', '#F3E2C7','#FFB3B3',
+            
+        ];
+        const colorNames = ['Fresh Grass','Basil Lime','Bluebell','Forest Haze','Flower Hill']; // 추가
+
+        let selectedColor = colors[0]; // 기본 선택 색상
+        let deleteMode = false; // 삭제 모드 활성화 여부
+        const password = "0729"; // 삭제 모드 진입을 위한 비밀번호
+
+        const colorPicker = document.getElementById('colorPicker');
+        const postsContainer = document.getElementById('posts');
+        const messageInput = document.getElementById('message');
+
+        // 컬러칩 표시 및 선택 기능
+        colors.forEach((color,i) => {
+            const swatch = document.createElement('div');
+            swatch.className = 'color-swatch';
+            swatch.style.backgroundColor = color;
+
+             // ✅ 이름 태그 추가
+  const label = document.createElement('span');
+  label.textContent = colorNames[i];
+  label.style.fontSize = "10px";
+  label.style.display = "block";
+  label.style.textAlign = "center";
+  label.style.marginTop = "4px";
+
+    swatch.appendChild(label);
+
+            
+            if (color === selectedColor) swatch.classList.add('selected');
+
+            swatch.onclick = () => {
+                selectedColor = color;
+                document.querySelectorAll('.color-swatch').forEach(s => s.classList.remove('selected'));
+                swatch.classList.add('selected');
+            }
+            colorPicker.appendChild(swatch);
+        });
+
+        // 서버에 새 글 추가 (google.script.run 사용)
+        async function addPost() {
+            const text = messageInput.value.trim();
+            if (!text) {
+                alert('내용을 입력해주세요!');
+                return;
+            }
+
+            const postData = {
+                action: 'add',
+                color: selectedColor,
+                text: text
+            };
+
+            // google.script.run을 사용하여 Apps Script의 doPost 함수를 호출합니다.
+            // .withSuccessHandler와 .withFailureHandler를 사용하여 비동기 처리
+            google.script.run
+                .withSuccessHandler(function(json) {
+                    if (json.result === 'success') {
+                        messageInput.value = ''; // 입력창 비우기
+                        loadPosts(); // 게시물 다시 불러오기
+                    } else {
+                        alert('게시물 저장에 실패했습니다. 오류: ' + json.message);
+                        console.error('Save failed:', json.message);
+                    }
+                })
+                .withFailureHandler(function(error) {
+                    alert('서버와 통신 중 오류가 발생했습니다. 콘솔을 확인해주세요.');
+                    console.error('Error adding post:', error);
+                })
+                .doPost(postData); // doPost 함수에 객체를 직접 전달
+        }
+
+        // 서버에서 글 목록 불러오기 (google.script.run 사용)
+        async function loadPosts() {
+            // google.script.run을 사용하여 Apps Script의 doPost 함수를 호출합니다.
+            google.script.run
+                .withSuccessHandler(function(posts) {
+                    renderPosts(posts); // 불러온 게시물 화면에 렌더링
+                })
+                .withFailureHandler(function(error) {
+                    alert('게시물 목록을 불러오는 데 실패했습니다. 콘솔을 확인해주세요.');
+                    console.error('Error loading posts:', error);
+                })
+                .doPost({ action: 'list' }); // action: 'list' 객체를 직접 전달
+        }
+
+        // 서버에서 글 삭제 (google.script.run 사용)
+        async function deletePost(id) {
+            if (!confirm('정말로 이 게시물을 삭제하시겠습니까?')) return;
+
+            // google.script.run을 사용하여 Apps Script의 doPost 함수를 호출합니다.
+            google.script.run
+                .withSuccessHandler(function(json) {
+                    if (json.result === 'deleted') {
+                        loadPosts(); // 삭제 후 게시물 다시 불러오기
+                    } else if (json.result === 'not_found') {
+                        alert('삭제할 게시물을 찾을 수 없습니다.');
+                    } else {
+                        alert('게시물 삭제에 실패했습니다. 오류: ' + json.message);
+                        console.error('Delete failed:', json.message);
+                    }
+                })
+                .withFailureHandler(function(error) {
+                    alert('게시물 삭제 중 오류가 발생했습니다. 콘솔을 확인해주세요.');
+                    console.error('Error deleting post:', error);
+                })
+                .doPost({ action: 'delete', id: id }); // action: 'delete' 객체를 직접 전달
+        }
+
+        // 글 렌더링 (posts 배열을 받아서 화면에 표시)
+        function renderPosts(posts) {
+            postsContainer.innerHTML = ''; // 기존 게시물 모두 지우기
+
+            posts.forEach(post => { 
+                const div = document.createElement('div');
+                div.className = 'post';
+                div.style.backgroundColor = post.color;
+
+                const textNode = document.createElement('div');
+                textNode.textContent = post.text;
+                div.appendChild(textNode);
+
+                // 삭제 모드일 때만 삭제 버튼 추가
+                if (deleteMode) {
+                    const delBtn = document.createElement('button');
+                    delBtn.textContent = '삭제';
+                    delBtn.className = 'delete-btn';
+                    delBtn.onclick = () => deletePost(post.id); // 삭제 버튼 클릭 시 deletePost 함수 호출
+                    div.appendChild(delBtn);
+                }
+                postsContainer.appendChild(div);
+            });
+           postsContainer.scrollTop = postsContainer.scrollHeight;
+        }
+
+        // 비밀번호 입력 프롬프트 및 삭제 모드 토글
+        function promptPassword() {
+            const input = prompt("삭제 모드 진입을 위한 비밀번호를 입력하세요:");
+            if (input === password) {
+                deleteMode = !deleteMode; // 삭제 모드 토글
+                alert(`삭제 모드: ${deleteMode ? '활성화' : '비활성화'}`);
+                loadPosts(); // 삭제 버튼 표시 여부를 업데이트하기 위해 게시물 다시 불러오기
+            } else {
+                alert("비밀번호가 틀렸습니다.");
+            }
+        }
+
+        // 플로팅 메뉴 토글
+        function toggleMenu() {
+            const menu = document.getElementById('menuBox');
+            menu.style.display = menu.style.display === 'flex' ? 'none' : 'flex';
+        }
+
+        // 페이지 로드 시 초기 게시물 불러오기
+        // 문서가 완전히 로드된 후 loadPosts를 호출하도록 DOMContentLoaded 이벤트 사용
+        document.addEventListener('DOMContentLoaded', loadPosts);
+    </script>
+</body>
+</html>
